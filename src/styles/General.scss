@@ -1,0 +1,50 @@
+*
+{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root
+{
+  padding-top: 54px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body
+{
+  font-family: $main-font;
+  color: $black;
+  background: $grey;
+  min-height: 100vh;
+}
+
+main 
+{
+  margin: 0 auto 40px auto;
+  width: 91%;
+}
+
+.flex-center
+{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-center-col
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-start
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,0 +1,42 @@
+.searchbar
+{
+    display: flex;
+    padding: 0px 20px;
+    align-items: center;
+
+    &__input
+    {
+        background: $black;
+        border: none;
+        caret-color: $grey;
+        color: $whiteTrans;
+        outline: none;
+        padding: 10px;
+        padding-left: 20px;
+        width: 300px;
+
+        &::placeholder
+        {
+            color: $whiteTrans;
+        }
+    }
+    &__button
+    {
+        background: none;
+        border: none;
+    }
+
+    &__icon
+    {
+        color: $whiteTrans;
+        font-size: 1.8rem;
+
+        &:hover
+        {
+            color: $menuHover;
+            cursor: pointer;
+        }
+    }
+}
+
+

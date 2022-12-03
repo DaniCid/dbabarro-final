@@ -1,0 +1,54 @@
+.navbar 
+{
+    background-color: $black;
+    display: block;
+    position: fixed;
+    top: 0;
+    transition: top 1.5s;
+    width: 100%;
+    z-index: 999;
+
+    &__icon 
+    {
+        display: block;
+        font-size: 1.5rem;
+    }
+
+    &__item 
+    {
+
+        &:last-of-type {
+
+            margin-left: auto;
+        }
+    }
+
+    &__link
+    {
+        color: $whiteTrans;
+        display: block;
+        font-size: 1.06rem;
+        padding: 15px;
+        text-decoration: none;
+
+        &:hover 
+        {
+            color: $menuHover;
+        }
+
+        &:active, &:focus 
+        {
+            color: $whiteTrans;
+        }
+
+        &.active
+        {
+            color: $menuHover;
+        }
+    }
+
+    &__menu 
+    {
+        list-style-type: none;
+    }
+}

@@ -1,0 +1,57 @@
+.card
+{
+    height: 200px;
+    position: relative;
+    width: 330px;
+    
+    &:hover
+    {
+        cursor: pointer;
+    }
+
+    img
+    {
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        width: 100%;
+    }
+
+    &__link
+    {
+        display: inline-block;
+    }
+
+    &__bookmark
+    {
+        color: $whiteTrans;
+        padding: 15px;
+        position: absolute;
+    }
+    
+    &__tagslist
+    {
+        bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+        position: absolute;
+        right: 10px;
+
+        &-tag
+        {
+            background: $whiteTrans;
+            border-radius: 5px;
+            font-family: $montserrat;
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 3px 6px;
+            text-transform: uppercase;
+        }
+
+    }
+
+}
+
+

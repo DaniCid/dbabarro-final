@@ -1,0 +1,41 @@
+.footer
+{
+    align-items: center;
+    background: $black;
+    color: $whiteTrans;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-evenly;
+    margin-top: auto;
+
+    &__copyright
+    {
+        a
+        {
+            color: $whiteTrans;
+            text-decoration: none;
+            transition: ease-in-out all .3s;
+
+            &:hover
+            {
+                color: $menuHover;
+            }
+        }
+    }
+
+    .snsList
+    {
+        &__icon
+        {
+            font-size: 1.3rem;
+            margin: 0 5px;
+            transition: ease-in-out all .3s;
+            
+            &:hover
+            {
+                cursor: pointer;
+            }
+        }
+    }
+}

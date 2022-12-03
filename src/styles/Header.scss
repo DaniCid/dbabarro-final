@@ -1,0 +1,27 @@
+.header
+{
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    
+    &__title
+    {
+        background-attachment: fixed;
+        background-clip: text;
+        background-image: url(../images/background.jpg);
+        font-family: $montserrat;
+        font-size: 10rem;
+        font-weight: 900;
+        line-height: 130px;
+        text-transform: uppercase;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__icon 
+    {
+        font-size: 20rem;
+    }    
+}
+
+
