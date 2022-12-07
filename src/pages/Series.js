@@ -1,26 +1,16 @@
 import React from 'react'
-import Card from '../components/Card'
-import { useMedias } from '../contexts/MediaContexts'
+import DataFromApi from '../components/DataFromApi'
+import CardsList from '../components/CardsList'
+import { DISPLAY_MAX_PAGE } from '../contexts/MediaContexts'
 
 export default function Series() {
 
-  const { series } = useMedias()
-
   return (
     <div className="series">
-        <h1>Series</h1>
-        <div className='cardslist__cards'>
-        {
-          series?.slice(0, 10).map( serie => (
-            <Card 
-              key={ serie.id }
-              bookmark={ false }
-              image={'../images/bigbang.jpg'}
-              tags={ [] }
-            />
-          )
-        ) }
-      </div>
+      <CardsList display={DISPLAY_MAX_PAGE} seriesList />
+      <DataFromApi />
     </div>
   )
 }
+
+// We import DataFromApi so that we don't lose the data when we refresh the page

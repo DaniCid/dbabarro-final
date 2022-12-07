@@ -1,48 +1,45 @@
 import React, { useContext, useState } from "react"
-import { v4 as uuid } from "uuid"
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const MediaContext = React.createContext();
 
-export const API_KEY = '1fc81efcdf6761d684f7217b604b2343'
+// API
+export const API_KEY = '?api_key=1fc81efcdf6761d684f7217b604b2343'
+export const API_URL = 'https://api.themoviedb.org/3'
+
+// PAGINATION
+export const DISPLAY_MAX_PAGE = 18
+export const DISPLAY_MAX_TRENDING = 6
+
+// IMAGES FORMAT
+export const POSTER_MOVIE_URL = 'https://image.tmdb.org/t/p/w342'
 
 export function useMedias() {
     return useContext(MediaContext)
 }
 
 export const MediaProvider = ({ children }) => {
-    const [series, setSeries] = useState([]) //usar LocalStorage solo para development y poder ver los objetos con inspect, cambiar a UseState luego
-    const [movies, setMovies] = useLocalStorage('movies', []) //usar LocalStorage solo para development y poder ver los objetos con inspect, cambiar a UseState luego
+
+    // BOOKMARKS
     const [bookmarks, setBookmarks] = useLocalStorage('bookmarks', [])
 
+    // SERIES & MOVIES
+    const [series, setSeries] = useState([]) 
+    const [movies, setMovies] = useState([])
+
+    // SEARCH
     const [searchedWord, setSearchedWord] = useState('')
     const [searchResults, setSearchResults] = useState([])
+
+    // LANGUAGE
     const [language, setLanguage] = useState('en-US')
 
-    function addSeries({ bookmark, image, tags }) {
-        setSeries(serie => {
-            return [ ...serie, { id: uuid(), bookmark, image, tags }]
-        })
+    function getSerie( id ) {
+        return series.filter(serie => serie.id === id)
     }
 
-    function addMovies({ bookmark, image, tags }) {
-        setMovies(movie => {
-            return [ ...movie, { id: uuid(), bookmark, image, tags }]
-        })
-    }
-
-    function addSearchResults({ image, tags, title, id }) {
-        setSearchResults(result => {
-            return [ ...result, { key: uuid(), id, image, tags, bookmark: false, title }]
-        })
-    }
-
-    function setLang( x ) {
-        setLanguage( x )
-    }
-
-    function getSearchResult() {
-        return searchResults
+    function getMovie( id ) {
+        return movies.filter(movie => movie.id === id)
     }
 
     return (
@@ -52,13 +49,13 @@ export const MediaProvider = ({ children }) => {
             searchResults,
             language,
             searchedWord,
-            addSeries,
-            addMovies,
-            setLang,
-            getSearchResult,
-            addSearchResults,
+            setSeries,
+            setMovies,
             setSearchResults,
-            setSearchedWord
+            setLanguage,
+            setSearchedWord,
+            getSerie,
+            getMovie
         }}>
             {children}
         </MediaContext.Provider>

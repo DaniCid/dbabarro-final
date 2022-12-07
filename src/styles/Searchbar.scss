@@ -20,6 +20,7 @@
             color: $whiteTrans;
         }
     }
+
     &__button
     {
         background: none;
@@ -37,6 +38,31 @@
             cursor: pointer;
         }
     }
+
+    .language
+    {
+        background: none;
+        border: none;
+        color: $whiteTrans;
+        font-family: $main-font;
+        font-size: 0.85rem;
+        outline: none;
+
+        &:hover
+        {
+            cursor: pointer;
+        }
+
+        &__option
+        {
+            background: $black;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+    }
 }
+
+
 
 

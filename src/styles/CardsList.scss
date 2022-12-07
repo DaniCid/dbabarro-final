@@ -1,25 +1,39 @@
 .cardslist
 {
-    &__title
-    {
-        color: $black;
-        font-family: $title-font;
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-top: 25px;
-        padding: 15px;
-        text-transform: uppercase;
-    }
-    
     &__cards
     {
-        align-items: center;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
     }
+
+    &__link
+    {
+        color: $black;
+        font-family: $title-font;
+        font-size: .9rem;
+        margin: 0 15px;
+        text-decoration: none;
+    }
+
+    &__menu
+    {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 25px;
+    }
+
+    &__title
+    {
+        color: $black;
+        font-family: $title-font;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+    }
+
 }
 
 

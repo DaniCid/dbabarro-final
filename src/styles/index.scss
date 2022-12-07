@@ -1,19 +1,28 @@
 /**
 * Stylesheet for Media Tracker
-* Author: Dani Babarro
+* Author: Dani Babarro Cid
 * Version: 1.0.0
 * Comments: Developed for the GA Front End Development Course with Fundation Adecco
 **/
 
+// General
 @import './variables.scss';
 @import './General.scss';
+@import './icons.scss';
+@import './tags.scss';
+
+// Components
 @import './Card.scss';
 @import './Footer.scss';
 @import './CardsList.scss';
-@import './icons.scss';
-@import './tags.scss';
 @import './Header.scss';
 @import './Navbar.scss';
 @import './Searchbar.scss';
+
+// Pages
+@import './NotFound.scss';
+@import './Series.scss';
+@import './Movies.scss';
+@import './SearchResult.scss';
 
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_KEY, useMedias } from '../contexts/MediaContexts'
+import { API_KEY, API_URL, useMedias } from '../contexts/MediaContexts'
 import axios from 'axios'
 
 export default function Searchbar() {
@@ -10,61 +10,54 @@ export default function Searchbar() {
   const navigate = useNavigate()
 
   const [searchResult, setSearchResult] = useState([])
-  const { language, setSearchResults, searchResults, searchedWord, setSearchedWord } = useMedias()
+  const { language, setLanguage, searchResults, setSearchResults, searchedWord, setSearchedWord } = useMedias()
 
   useEffect( () => {
   const search = encodeURI(searchedWord)
-  const url = 'https://api.themoviedb.org/3/search/multi?api_key=' + API_KEY + '&language=' + language + '&page=1&include_adult=false&query='
+  const url = API_URL + '/search/multi' + API_KEY + '&language=' + language + '&page=1&include_adult=false&query='
     if(search){
         axios.get(url + search)
           .then( res => {
-            setSearchResults(res.data)
+            setSearchResults(res.data.results)
             console.log('Effect Language:')
             console.log(language)
             console.log('Effect Value:')
             console.log(searchedWord)
+            console.log(res.data.results.prueba)
+            console.log(searchResults)
           })
           .catch(error => {
             console.log(error)
           })
       }  
-  }, [searchedWord])
-
-  console.log('ResultS General:')
-  console.log(searchResults)
-  console.log('Result General:')
-  console.log(searchResult)
-  console.log('Value General:')
-  console.log(searchedWord)
+  }, [searchedWord, language])
 
   const handleSearch = () => {
     console.log('Pulsado')
-    // setSearchResults(searchResult)
+
     if (searchRef.current.value) {
       setSearchedWord(searchRef.current.value)
-      // searchResult.results.map(result => {
-      //   addSearchResults({
-      //     id: result.id,
-      //     title: result.title,
-      //     image: result.poster_path,
-      //     tags: []
-      //   })
-      // })
+
       navigate("/search", { replace: true })
-      // setSearchResult('')
     } else {
       console.log("empty searchbar")
     }
   }
 
+    const handleLanguage = event => {
+        setLanguage(event.target.value)
+    }
+
   return (
     <div className="searchbar">
-      <input 
-        ref={ searchRef } 
-        type="text" 
-        placeholder="Search..." 
-        className="searchbar__input"
-      />
+
+      <select value={ language } onChange={ handleLanguage } className="language">
+        <option value="es-ES" className="language__option">ES</option>
+        <option value="en-US" className="language__option">US</option>
+      </select>
+
+      <input ref={ searchRef } type="text" placeholder="Search..." className="searchbar__input" />
+
       <button onClick={ handleSearch } className="searchbar__button">
         <div className="material-symbols-outlined searchbar__icon">
             search
