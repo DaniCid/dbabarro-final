@@ -6,6 +6,10 @@ const MediaContext = React.createContext();
 // API
 export const API_KEY = '?api_key=1fc81efcdf6761d684f7217b604b2343'
 export const API_URL = 'https://api.themoviedb.org/3'
+export const API_URL_TREND_MOVIE = '/trending/movie/week'
+export const API_URL_TREND_TV = '/trending/tv/week'
+export const API_URL_SEARCH = '/search/multi'
+export const API_URL_PROVIDERS = '/watch/providers'
 
 // PAGINATION
 export const DISPLAY_MAX_PAGE = 18
@@ -34,12 +38,12 @@ export const MediaProvider = ({ children }) => {
     // LANGUAGE
     const [language, setLanguage] = useState('en-US')
 
-    function getSerie( id ) {
-        return series.filter(serie => serie.id === id)
-    }
+    // INFO
+    const [infoUrl, setInfoUrl] = useState('')
+    const [infoMedia, setInfoMedia] = useState()
 
-    function getMovie( id ) {
-        return movies.filter(movie => movie.id === id)
+    const handleInfoUrl = ( id, type ) => {
+        setInfoUrl(API_URL + '/' + type + '/' + id + API_KEY + '&language=') 
     }
 
     return (
@@ -49,13 +53,16 @@ export const MediaProvider = ({ children }) => {
             searchResults,
             language,
             searchedWord,
+            infoMedia,
+            infoUrl,
             setSeries,
             setMovies,
             setSearchResults,
             setLanguage,
             setSearchedWord,
-            getSerie,
-            getMovie
+            setInfoMedia,
+            setInfoUrl,
+            handleInfoUrl
         }}>
             {children}
         </MediaContext.Provider>

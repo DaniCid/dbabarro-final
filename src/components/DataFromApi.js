@@ -1,38 +1,53 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { useMedias, API_KEY, API_URL } from '../contexts/MediaContexts'
+import { useMedias, API_KEY, API_URL, API_URL_TREND_MOVIE, API_URL_TREND_TV, API_URL_MOVIE, API_URL_TV } from '../contexts/MediaContexts'
 
 export default function DataFromApi() {
 
-  const { language, setSeries, setMovies, setSearchResults, searchedWord } = useMedias()
+  const { language, setSeries, setMovies, setSearchResults, searchedWord, selectedId, selectedType, setInfoSerie, setInfoMovie } = useMedias()
 
   const [page, setPage] = useState('1')
 
-  // SERIES
-  useEffect( () => {
-    const url = API_URL + '/trending/tv/week' + API_KEY + '&language=' + language + '&page=' + page
-          axios.get(url)
-            .then( res => {
-              setSeries(res.data.results) 
-              console.log(res.data.results)
-            })
-            .catch(error => {
-              console.log(error)
-            })
-  }, [language])
+    // TRENDING SERIES
+    useEffect( () => {
+        const url = API_URL + API_URL_TREND_TV + API_KEY + '&language=' + language + '&page=' + page
+            axios.get(url)
+                .then( res => {
+                    setSeries(res.data.results) 
+                    console.log(res.data.results)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+    }, [language])
 
-  // MOVIES
-  useEffect( () => {
-    const url = API_URL + '/trending/movie/week' + API_KEY + '&language=' + language + '&page=' + page
-          axios.get(url)
-            .then( res => {
-              setMovies(res.data.results)
-              console.log(res.data.results)
-            })
-            .catch(error => {
-              console.log(error)
-            })
-  }, [language])
+    // TRENDING MOVIES
+    useEffect( () => {
+        const url = API_URL + API_URL_TREND_MOVIE + API_KEY + '&language=' + language + '&page=' + page
+            axios.get(url)
+                .then( res => {
+                    setMovies(res.data.results)
+                    console.log(res.data.results)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+    }, [language])
+
+    // // DETAIL SERIES & MOVIES
+    // useEffect( () => {
+    //     const url = API_URL + '/' + selectedType + '/' + selectedId + API_KEY + '&language=' + language
+
+    //     if (selectedId !== '') {
+    //         axios.get(url)
+    //             .then( res => {
+    //                 setInfoSerie(res.data)
+    //             })
+    //             .catch(error => {
+    //                 console.log(error)
+    //             })
+    //     }
+    // }, [language, selectedId, selectedType])
 
   // SEARCH
   // useEffect( () => {
