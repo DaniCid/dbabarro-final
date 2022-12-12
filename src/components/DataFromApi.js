@@ -4,7 +4,7 @@ import { useMedias, API_KEY, API_URL, API_URL_TREND_MOVIE, API_URL_TREND_TV, API
 
 export default function DataFromApi() {
 
-  const { language, setSeries, setMovies, setSearchResults, searchedWord, selectedId, selectedType, setInfoSerie, setInfoMovie } = useMedias()
+  const { language, setSeries, setMovies, series, bookmarks, setSearchResults, searchedWord, selectedId, selectedType, setInfoSerie, setInfoMovie } = useMedias()
 
   const [page, setPage] = useState('1')
 
@@ -13,8 +13,10 @@ export default function DataFromApi() {
         const url = API_URL + API_URL_TREND_TV + API_KEY + '&language=' + language + '&page=' + page
             axios.get(url)
                 .then( res => {
-                    setSeries(res.data.results) 
-                    console.log(res.data.results)
+                    const mySeries = res.data.results.map(data => ({...data, bookmark: false}))
+                    setSeries(mySeries)
+                    updateSeries(series, bookmarks)
+                    console.log(mySeries)
                 })
                 .catch(error => {
                     console.log(error)
@@ -26,13 +28,45 @@ export default function DataFromApi() {
         const url = API_URL + API_URL_TREND_MOVIE + API_KEY + '&language=' + language + '&page=' + page
             axios.get(url)
                 .then( res => {
-                    setMovies(res.data.results)
-                    console.log(res.data.results)
+                    const myMovies = res.data.results.map(data => ({...data, bookmark: false}))
+                    setMovies(myMovies) 
+                    console.log(myMovies)
                 })
                 .catch(error => {
                     console.log(error)
                 })
     }, [language])
+
+
+    const updateSeries = (a, b) => {
+        
+        return a.filter(object1 => {
+            return b.some(object2 => {
+                return object1.id === object2.id
+            })
+        })
+    }
+
+
+    //NOTES
+
+    // Get data from Axios
+    // Create new key 'bookmark' (false) in every object in the data array and asign it to mySeries array
+    // Look if array bookmarks (localStorage) is empty
+    // if not empty -> then compare mySeries array with bookmarks array
+    // if there is common element, then change his bookmark key to true
+    // Update everything
+
+
+
+
+
+    // useEffect(() => {
+    //     // search common elements on series and bookmark to update the bookmark field on series array objects
+
+    //     let c = series.filter(value => bookmarks.includes(value))
+    //     console.log(c)
+    // }, [series, bookmarks])
 
     // // DETAIL SERIES & MOVIES
     // useEffect( () => {

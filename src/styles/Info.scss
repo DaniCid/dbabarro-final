@@ -1,0 +1,77 @@
+.fondo{
+    background-position: left calc((50vw - 170px) - 340px) top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    margin-top: 50px;
+}
+
+  .poster {
+    height: 450px;
+    width: 300px;
+  }
+
+  .filtro {
+    background-image: linear-gradient(to right, rgba(51, 51, 51, 1) calc((50vw - 170px) - 340px), rgba(51, 51, 51, 0.84) 30%, rgba(163, 163, 163, 0.84) 100%);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapperov {
+    max-width: 1400px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.postertitle {
+    color: #fff;
+    font-size: 2.2rem;
+    font-family: 'Source Sans Pro',sans-serif;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.genreinfo{
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro',sans-serif;
+}
+
+.overview  {
+    color: #fff;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 30px;
+}
+
+.ovtitle {
+    margin: 10px 0;
+}
+
+.ovdate {
+    padding: 3px 5px;
+    border: 1px solid #ddd;
+    color: #ddd;
+    border-radius: 3px;
+    margin-right: 3px;
+    font-size: .8rem;
+}
+
+.genre {
+    margin: 0 3px;
+}
+
+.hora {
+    margin-left: 3px;
+}
+
+.poster img{
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}

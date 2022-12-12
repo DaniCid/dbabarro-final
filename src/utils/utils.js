@@ -1,4 +1,4 @@
-export const formatReleaseDate = date => {
+export const formatReleaseDate = ( date, yearDate ) => {
 
     if ( date === 'Date Unavailable' ) return date
 
@@ -7,6 +7,8 @@ export const formatReleaseDate = date => {
 
     let month = months[d.getMonth()]
     let year = d.getFullYear()
+
+    if ( yearDate === 'year' ) return year
 
     return month + ' ' + year
 }

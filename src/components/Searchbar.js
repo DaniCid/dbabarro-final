@@ -12,13 +12,15 @@ export default function Searchbar() {
   const [searchResult, setSearchResult] = useState([])
   const { language, setLanguage, searchResults, setSearchResults, searchedWord, setSearchedWord } = useMedias()
 
+    // SEARCH API
     useEffect( () => {
         const search = encodeURI(searchedWord)
         const url = API_URL + API_URL_SEARCH + API_KEY + '&language=' + language + '&page=1&include_adult=false&query='
         if ( search.length > 1 ) {
             axios.get(url + search)
                 .then( res => {
-                    setSearchResults(res.data.results)
+                    const mySearch = res.data.results.map(data => ({...data, bookmark: false}))
+                    setSearchResults(mySearch)
                 })
                 .catch(error => {
                     console.log(error)
@@ -26,22 +28,25 @@ export default function Searchbar() {
         }
     }, [searchedWord, language])
 
+    // Handle the search + display errors if any
     const handleSearch = () => {
-
         if (searchRef.current.value.length > 1) {
             setSearchedWord(searchRef.current.value)
             navigate("/search", { replace: true })
         }
 
-        if (searchRef.current.value.length === 1) return console.log('Need atleast two letter for the search')
+        if (searchRef.current.value.length === 1) {
+            alert('Search too short. Please use two or more letters in your search.')
+        }
 
-        if (searchRef.current.value.length < 1) return console.log('Empty Searchbar')
+        if (searchRef.current.value.length < 1) {
+            alert('Empty Searchbar')
+        }
     }
 
     console.log(searchResults)
-    // Set the language
-    const handleLanguage = event => {
-        
+    // Set the language for results
+    const handleLanguage = event => {     
         setLanguage(event.target.value)
     }
 

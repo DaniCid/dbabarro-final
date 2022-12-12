@@ -1,0 +1,33 @@
+.cast
+{
+    display: flex;
+    overflow: auto;
+    // white-space: nowrap;
+    margin: 20px;
+}
+
+.wrapper
+{
+    width: 90%;
+    margin: auto;
+}
+
+.cast__card 
+{
+    width: 138px;
+    margin: 5px;
+}
+
+.cast__title
+{
+    color: $black;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.cast__character
+{
+    color: $greyDark;
+    font-size: .9rem;
+    text-align: center;
+}

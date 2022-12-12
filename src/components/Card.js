@@ -2,14 +2,45 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatReleaseDate, round } from '../utils/utils'
 import { useMedias, API_URL, API_KEY } from '../contexts/MediaContexts'
+import { useState } from 'react'
 
 export default function Card({ bookmark, image, id, title, type, date, rating }) {
 
-    const { setSelectedId, setSelectedType, setInfoUrl, handleInfoUrl } = useMedias()
+    const empty = 'fa-regular'
+    const filled = 'fa-solid'
+
+    const [bookmarkIcon, setBookmarkIcon] = useState(empty)
+
+    const { setSelectedId, setSelectedType, setInfoUrl, handleInfoUrl, addBookmark, deleteBookmark, getMedia } = useMedias()
 
     const onClickInfo = () => {
         handleInfoUrl(id, type)
     }
+
+    const onClickBookmark = () => {
+        console.log(bookmark)
+        if ( bookmarkIcon === empty ) {
+            addBookmark(id, type)
+            //change bookmark to true -> search in series/movies in Context -> change object.bookmark to trrue
+            setBookmarkIcon(filled)
+        }
+
+        if ( bookmarkIcon === filled ) {
+            deleteBookmark(id)
+            //change bookmark to false -> search in series/movies in Context -> change object.bookmark to false
+            setBookmarkIcon(empty)
+        }  
+    }
+
+    const handleBookmarkIcon = () => {
+        if ( bookmark === false) {
+            return empty
+        } else {
+            return filled
+        }
+    }
+
+
   
   return (
     <>
@@ -19,7 +50,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating })
                     <img src={image} loading="lazy" alt={title} className="card__image" />
                 </Link>
                 <div className="card__bookmark">
-                    <i className="fa-regular fa-bookmark"></i>
+                    <i className={bookmarkIcon + " fa-bookmark"} onClick={onClickBookmark}></i>
                 </div>
             </div>
             <h3 className="card__title">
