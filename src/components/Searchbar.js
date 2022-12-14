@@ -1,52 +1,35 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_KEY, API_URL, API_URL_SEARCH, useMedias } from '../contexts/MediaContexts'
+import { API_KEY, API_URL_LANGUAGE, API_URL_PAGE, API_URL_SEARCH, API_URL_QUERY, SEARCH_MIN_CHARS, useMedias } from '../contexts/MediaContexts'
 import axios from 'axios'
 
 export default function Searchbar() {
 
-  const searchRef = useRef()
-  
-  const navigate = useNavigate()
+    const searchRef = useRef()
 
-  const [searchResult, setSearchResult] = useState([])
-  const { language, setLanguage, searchResults, setSearchResults, searchedWord, setSearchedWord } = useMedias()
+    const navigate = useNavigate()
 
-    // SEARCH API
-    useEffect( () => {
-        const search = encodeURI(searchedWord)
-        const url = API_URL + API_URL_SEARCH + API_KEY + '&language=' + language + '&page=1&include_adult=false&query='
-        if ( search.length > 1 ) {
-            axios.get(url + search)
-                .then( res => {
-                    const mySearch = res.data.results.map(data => ({...data, bookmark: false}))
-                    setSearchResults(mySearch)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        }
-    }, [searchedWord, language])
+    const { language, setLanguage } = useMedias()
 
-    // Handle the search + display errors if any
     const handleSearch = () => {
-        if (searchRef.current.value.length > 1) {
-            setSearchedWord(searchRef.current.value)
-            navigate("/search", { replace: true })
+
+        if (searchRef.current.value.length > SEARCH_MIN_CHARS) {
+            const query = encodeURI(searchRef.current.value)
+            navigate("/search/" + query, { replace: true })
         }
 
-        if (searchRef.current.value.length === 1) {
-            alert('Search too short. Please use two or more letters in your search.')
-        }
-
-        if (searchRef.current.value.length < 1) {
+        if (searchRef.current.value.length === 0) {
             alert('Empty Searchbar')
+        }
+
+        if (searchRef.current.value.length <= SEARCH_MIN_CHARS) {
+            alert('Search too short. Please use two or more letters in your search.')
         }
     }
 
-    console.log(searchResults)
-    // Set the language for results
-    const handleLanguage = event => {     
+    // Set language
+    const handleLanguage = event => {
+
         setLanguage(event.target.value)
     }
 
@@ -54,9 +37,9 @@ export default function Searchbar() {
         <div className="searchbar">
 
             <select value={ language } onChange={ handleLanguage } className="language">
-                <option value="ES" className="language__option">ES</option>
-                <option value="FR" className="language__option">FR</option>
-                <option value="US" className="language__option">US</option>
+                <option value="es-ES" className="language__option">ES</option>
+                <option value="fr-FR" className="language__option">FR</option>
+                <option value="en-US" className="language__option">US</option>
             </select>
 
             <input ref={ searchRef } type="text" placeholder="Search..." className="searchbar__input" />

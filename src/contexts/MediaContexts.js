@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react"
-import { useEffect } from "react";
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const MediaContext = React.createContext();
@@ -7,16 +6,23 @@ const MediaContext = React.createContext();
 // API
 export const API_KEY = '?api_key=1fc81efcdf6761d684f7217b604b2343'
 export const API_URL = 'https://api.themoviedb.org/3'
-export const API_URL_TREND_MOVIE = '/trending/movie/week'
-export const API_URL_TREND_TV = '/trending/tv/week'
-export const API_URL_SEARCH = '/search/multi'
+
+export const API_URL_TREND_MOVIE = API_URL + '/trending/movie/week' + API_KEY
+export const API_URL_TREND_TV = API_URL + '/trending/tv/week' + API_KEY
+export const API_URL_SEARCH = API_URL + '/search/multi'
+
 export const API_URL_CREDITS = '/credits'
 export const API_URL_PROVIDERS = '/watch/providers'
 export const API_URL_LANGUAGE = '&language='
+export const API_URL_PAGE = '&page='
+export const API_URL_QUERY = '&query='
 
 // PAGINATION
-export const DISPLAY_MAX_PAGE = 18
-export const DISPLAY_MAX_TRENDING = 6
+export const DISPLAY_MAX_PAGE = 240         // Limit control for how much results Pages can show
+export const DISPLAY_MAX_TRENDING = 6       // Limit control for how much results Trending menu can show
+
+// SEARCH
+export const SEARCH_MIN_CHARS = 1           // Limit control for minimum characters needed for a search
 
 // IMAGES FORMAT
 export const IMAGE_DB_URL = 'https://image.tmdb.org/t/p/'
@@ -39,12 +45,20 @@ export const MediaProvider = ({ children }) => {
     const [series, setSeries] = useState([]) 
     const [movies, setMovies] = useState([])
 
+    // TRENDING SERIES & TRENDING MOVIES
+    const [trendSeries, setTrendSeries] = useState([]) 
+    const [trendMovies, setTrendMovies] = useState([])
+
     // SEARCH
-    const [searchedWord, setSearchedWord] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
     // LANGUAGE
-    const [language, setLanguage] = useState('US')
+    const [language, setLanguage] = useState('en-US')
+
+    // PAGES
+    let [seriesPage, setSeriesPage] = useState(1)
+    let [moviesPage, setMoviesPage] = useState(1)
+    let [searchPage, setSearchPage] = useState(1)
 
     // INFO
     const [infoUrl, setInfoUrl] = useState('')
@@ -56,14 +70,7 @@ export const MediaProvider = ({ children }) => {
     const [crewInfo, setCrewInfo] = useState([])
 
     // INFO WATCH PROVIDERS
-    const [providersUrl, setProvidersUrl] = useState('')
     const [providersInfo, setProvidersInfo] = useState([])
-
-    const handleInfoUrl = ( id, type ) => {
-        setInfoUrl(API_URL + '/' + type + '/' + id + API_KEY + '&language=')
-        setCastUrl(API_URL + '/' + type + '/' + id + API_URL_CREDITS + API_KEY + '&language=')
-        setProvidersUrl(API_URL + '/' + type + '/' + id + API_URL_PROVIDERS + API_KEY + '&language=')
-    }
 
     const getMedia = ( id, type ) => {
         return type === 'tv'
@@ -91,31 +98,37 @@ export const MediaProvider = ({ children }) => {
         <MediaContext.Provider value={{
             series,
             movies,
+            trendSeries,
+            trendMovies,
             bookmarks,
             searchResults,
             language,
-            searchedWord,
             infoMedia,
             infoUrl,
             castUrl,
             castInfo,
             crewInfo,
-            providersUrl,
             providersInfo,
+            seriesPage,
+            moviesPage,
+            searchPage,
             setSeries,
             setMovies,
+            setTrendSeries,
+            setTrendMovies,
             setSearchResults,
             setLanguage,
-            setSearchedWord,
             setInfoMedia,
             setInfoUrl,
-            handleInfoUrl,
             addBookmark,
             deleteBookmark,
             getMedia,
             setCastInfo,
             setCrewInfo,
-            setProvidersInfo
+            setProvidersInfo,
+            setSeriesPage,
+            setMoviesPage,
+            setSearchPage
         }}>
             {children}
         </MediaContext.Provider>

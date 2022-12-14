@@ -1,21 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
-import { useMedias, API_KEY, API_URL, API_URL_TREND_MOVIE, API_URL_TREND_TV, API_URL_MOVIE, API_URL_TV } from '../contexts/MediaContexts'
+import { useMedias, API_URL_TREND_TV, API_URL_TREND_MOVIE, API_URL_LANGUAGE, API_URL_PAGE } from '../contexts/MediaContexts'
 
 export default function DataFromApi() {
 
-  const { language, setSeries, setMovies, series, bookmarks, setSearchResults, searchedWord, selectedId, selectedType, setInfoSerie, setInfoMovie } = useMedias()
-
-  const [page, setPage] = useState('1')
+  const { language, page, setTrendSeries, setTrendMovies } = useMedias()
 
     // TRENDING SERIES
     useEffect( () => {
-        const url = API_URL + API_URL_TREND_TV + API_KEY + '&language=' + language + '&page=' + page
+        const url = API_URL_TREND_TV + API_URL_LANGUAGE + language
             axios.get(url)
                 .then( res => {
                     const mySeries = res.data.results.map(data => ({...data, bookmark: false}))
-                    setSeries(mySeries)
-                    updateSeries(series, bookmarks)
+                    setTrendSeries(mySeries)
                     console.log(mySeries)
                 })
                 .catch(error => {
@@ -25,11 +22,11 @@ export default function DataFromApi() {
 
     // TRENDING MOVIES
     useEffect( () => {
-        const url = API_URL + API_URL_TREND_MOVIE + API_KEY + '&language=' + language + '&page=' + page
+        const url = API_URL_TREND_MOVIE + API_URL_LANGUAGE + language
             axios.get(url)
                 .then( res => {
                     const myMovies = res.data.results.map(data => ({...data, bookmark: false}))
-                    setMovies(myMovies) 
+                    setTrendMovies(myMovies) 
                     console.log(myMovies)
                 })
                 .catch(error => {

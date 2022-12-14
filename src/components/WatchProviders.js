@@ -1,36 +1,22 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { useMedias, PROVIDERS_LOGO_URL } from '../contexts/MediaContexts'
+import { v4 as uuid } from "uuid"
 
-export default function WatchProviders({ url }) {
+export default function WatchProviders() {
 
-    const { language, providersUrl, setProvidersInfo, providersInfo } = useMedias()
-
-    // // PROVIDERS SERIES & MOVIES API
-    // useEffect( () => {
-    //     if (url !== '') {
-    //         axios.get(url + language)
-    //             .then( res => {
-    //                 setProvidersInfo(res.data.results[language].flatrate)
-    //                 console.log(res.data.results[language])
-    //             })
-    //             .catch(error => {
-    //                 console.log(error)
-    //             })
-    //     }     
-    // }, [language, url])
+    const { providersInfo } = useMedias()
 
   return (
     <>
         {  
         providersInfo?.map( provider => (
-            <img src={PROVIDERS_LOGO_URL + provider.logo_path} alt={provider.provider_name} className='providersImg'/>
+            <img src={ PROVIDERS_LOGO_URL + provider.logo_path } alt={ provider.provider_name } key={ uuid() } className='provider__logo'/>
         )) 
         }
-        <div className='credit__copyright'>data by JustWatch</div>
+        { !providersInfo &&
+          <span className='provider__empty'>Not available</span>
+        }
+      
     </>
   )
 }
-
-// Streaming Endpoint
-// res.data.results[language].flatrate -> []

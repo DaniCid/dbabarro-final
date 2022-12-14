@@ -1,4 +1,5 @@
-.fondo{
+.overview
+{
     background-position: left calc((50vw - 170px) - 340px) top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -6,25 +7,22 @@
     margin-top: 50px;
 }
 
-  .poster {
-    height: 450px;
-    width: 300px;
-  }
 
-  .filtro {
+  .overview__filter {
     background-image: linear-gradient(to right, rgba(51, 51, 51, 1) calc((50vw - 170px) - 340px), rgba(51, 51, 51, 0.84) 30%, rgba(163, 163, 163, 0.84) 100%);
     padding: 40px;
     display: flex;
     justify-content: center;
 }
 
-.wrapperov {
+.overview__wrapper {
     max-width: 1400px;
     display: flex;
     flex-wrap: nowrap;
 }
 
-.postertitle {
+.overview__title 
+{
     color: $whiteTrans;
     font-size: 2.2rem;
     font-family: 'Source Sans Pro',sans-serif;
@@ -32,7 +30,7 @@
     margin: 5px 0;
 }
 
-.genreinfo{
+.overview__data{
     color: $whiteTrans;
     font-size: 1rem;
     font-family: 'Source Sans Pro',sans-serif;
@@ -42,20 +40,20 @@
     color: $whiteTrans;
 }
 
-.info {
+.overview__info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-left: 30px;
 }
 
-.ovtitle {
+.overview__category {
     margin: 10px 0;
     font-family: $title-font;
     color: $whiteTrans;
 }
 
-.ovdate {
+.overview__date {
     padding: 3px 5px;
     border: 1px solid $greyLight;
     color: $greyLight;
@@ -64,28 +62,28 @@
     font-size: .8rem;
 }
 
-.genre {
+.overview__genres {
     margin: 0 3px;
 }
 
-.hora {
+.overview__time {
     margin-left: 3px;
 }
 
-.poster img{
-    height: 100%;
+.overview__poster
+{
     object-fit: cover;
     border-radius: 8px;
+    height: 450px;
+    width: 300px;
 }
 
 .watchProviders
 {
     text-align: center;
-    // display: flex;
-    // justify-content: center;
 }
 
-.more
+.overview__footer
 {
     display: flex;
     justify-content: space-between;
@@ -96,3 +94,8 @@
     text-align: center;
 }
 
+.info__cast
+{
+    width: 90%;
+    margin: 20px auto;
+}

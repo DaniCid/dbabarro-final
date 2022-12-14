@@ -26,31 +26,51 @@ export const round = (value, precision) => {
     return Math.round(value * multiplier) / multiplier
 }
 
+// Change Language format for API uses
+export const formatLanguage = language => {
+
+    switch ( language ) {
+        case 'en-US':
+            return 'US'
+        case 'es-ES':
+            return 'ES'
+        case 'fr-FR':
+            return 'FR'
+        default:
+            return 'US'
+    }
+}
+
 // DATA CONTROL
 export const handleNullImage = (img, path, type) => {
+
     return (img === null || img === undefined)
     ? type ? profileUnavailable : imageUnavailable
     : path + img
 }
 
 export const handleNullTitle = title => {
+
     return title
     ? title
     : 'No Title'
 }
 
 export const handleNullDate = date => {
+
     return (date !== '' || date !== undefined)
     ? date
     : 'Date Unavailable'
 }
 
 export const handleNullRating = rating => {
+
     return rating
     ? rating
     : '-'
 }
 
 export const isEmpty = obj => {
+
     return Object.keys(obj).length === 0;
 }
