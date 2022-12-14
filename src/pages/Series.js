@@ -6,7 +6,7 @@ import { DISPLAY_MAX_PAGE } from '../contexts/MediaContexts'
 export default function Series() {
 
   return (
-    <div className="series">
+    <div className="series" data-testid="series">
       <CardsList display={DISPLAY_MAX_PAGE} seriesList />
       <DataFromApi />
     </div>

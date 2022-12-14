@@ -16,7 +16,7 @@ export default function Routing() {
       <Route path="/series" element={ <Series />} />
       <Route path="/movies" element={ <Movies />} />
       <Route path="/bookmark" element={ <Bookmark />} />
-      <Route path="/info" element={ <Info />} />
+      <Route path="/info/:type/:id" element={ <Info />} />
       <Route path="/search" element={ <SearchResult />} />
       <Route path="*" element={ <NotFound />} />
     </Routes>

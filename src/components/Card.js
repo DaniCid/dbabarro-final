@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatReleaseDate, round } from '../utils/utils'
-import { useMedias, API_URL, API_KEY } from '../contexts/MediaContexts'
+import { useMedias } from '../contexts/MediaContexts'
 import { useState } from 'react'
 
 export default function Card({ bookmark, image, id, title, type, date, rating }) {
@@ -11,10 +11,10 @@ export default function Card({ bookmark, image, id, title, type, date, rating })
 
     const [bookmarkIcon, setBookmarkIcon] = useState(empty)
 
-    const { setSelectedId, setSelectedType, setInfoUrl, handleInfoUrl, addBookmark, deleteBookmark, getMedia } = useMedias()
+    const { handleInfoUrl, addBookmark, deleteBookmark } = useMedias()
 
     const onClickInfo = () => {
-        handleInfoUrl(id, type)
+        // handleInfoUrl(id, type)
     }
 
     const onClickBookmark = () => {
@@ -40,33 +40,27 @@ export default function Card({ bookmark, image, id, title, type, date, rating })
         }
     }
 
-
-  
-  return (
-    <>
+    return ( 
         <div className="card">
-            <div className="card__header" onClick={onClickInfo}>
-                <Link to="/info" className="card__link" >
-                    <img src={image} loading="lazy" alt={title} className="card__image" />
+            <div className="card__header">
+                <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ onClickInfo }>
+                    <img src={ image } loading="lazy" alt={ title } className="card__image" />
                 </Link>
                 <div className="card__bookmark">
-                    <i className={bookmarkIcon + " fa-bookmark"} onClick={onClickBookmark}></i>
+                    <i className={ bookmarkIcon + " fa-bookmark" } onClick={ onClickBookmark }></i>
                 </div>
             </div>
             <h3 className="card__title">
-                <Link to="/info" className="card__link" onClick={onClickInfo}>
-                    {title}
+                <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ onClickInfo }>
+                    { title }
                 </Link>
             </h3>
             <div className="card__footer">
-                <div className="card__date">
-                    {formatReleaseDate(date)}
-                </div>
+                <div className="card__date">{ formatReleaseDate(date) }</div>
                 <div className="card__rating">
-                    <i className="fa-solid fa-star"></i>{round(rating, 1)}
+                    <i className="fa-solid fa-star"></i>{ round(rating, 1) }
                 </div>
             </div>
         </div>
-    </>
-  )
+    )
 }

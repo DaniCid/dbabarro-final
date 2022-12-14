@@ -25,7 +25,7 @@
 }
 
 .postertitle {
-    color: #fff;
+    color: $whiteTrans;
     font-size: 2.2rem;
     font-family: 'Source Sans Pro',sans-serif;
     font-weight: 700;
@@ -33,13 +33,13 @@
 }
 
 .genreinfo{
-    color: #fff;
+    color: $whiteTrans;
     font-size: 1rem;
     font-family: 'Source Sans Pro',sans-serif;
 }
 
 .overview  {
-    color: #fff;
+    color: $whiteTrans;
 }
 
 .info {
@@ -51,12 +51,14 @@
 
 .ovtitle {
     margin: 10px 0;
+    font-family: $title-font;
+    color: $whiteTrans;
 }
 
 .ovdate {
     padding: 3px 5px;
-    border: 1px solid #ddd;
-    color: #ddd;
+    border: 1px solid $greyLight;
+    color: $greyLight;
     border-radius: 3px;
     margin-right: 3px;
     font-size: .8rem;
@@ -75,3 +77,22 @@
     object-fit: cover;
     border-radius: 8px;
 }
+
+.watchProviders
+{
+    text-align: center;
+    // display: flex;
+    // justify-content: center;
+}
+
+.more
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.credits
+{
+    text-align: center;
+}
+

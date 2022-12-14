@@ -3,13 +3,12 @@
     display: flex;
     overflow: auto;
     // white-space: nowrap;
-    margin: 20px;
 }
 
 .wrapper
 {
     width: 90%;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .cast__card 
@@ -18,11 +17,18 @@
     margin: 5px;
 }
 
-.cast__title
+.cast__name
 {
     color: $black;
     font-size: 1rem;
     text-align: center;
+}
+
+.cast__title
+{
+    margin: 10px 0;
+    color: $black;
+    font-family: $title-font;
 }
 
 .cast__character

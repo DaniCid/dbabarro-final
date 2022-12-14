@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 import Card from './Card'
 import { useMedias } from '../contexts/MediaContexts'
 import { POSTER_MOVIE_URL } from '../contexts/MediaContexts'
-import imageUnavailable from '../images/imageUnavailable.jpg'
+import { handleNullImage, handleNullTitle, handleNullDate, handleNullRating } from '../utils/utils'
 
 export default function CardsList({ category, display, menu, seriesList, moviesList, searchList, bookmarkList }) {
 
@@ -14,33 +14,6 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
     const [activeMovies, setActiveMovies] = useState('')
 
     const { series, movies, searchResults, bookmarks } = useMedias()
-
-    const tv = 'tv'
-
-    // CONTROL DATA
-    const handleNullImage = img => {
-        return (img === POSTER_MOVIE_URL + 'null' || img === POSTER_MOVIE_URL + 'undefined')
-        ? imageUnavailable
-        : img
-    }
-
-    const handleNullTitle = title => {
-        return title
-        ? title
-        : 'No Title'
-    }
-
-    const handleNullDate = date => {
-        return date !== ''
-        ? date
-        : 'Date Unavailable'
-    }
-
-    const handleNullRating = rating => {
-        return rating
-        ? rating
-        : '-'
-    }
 
     // CREATE CARDS
     const serieCard = () => {
@@ -53,7 +26,7 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
                     type={ serie.media_type }
                     date={ handleNullDate(serie.first_air_date) }
                     bookmark={ serie.bookmark }
-                    image={ handleNullImage(POSTER_MOVIE_URL + serie.poster_path) }
+                    image={ handleNullImage(serie.poster_path, POSTER_MOVIE_URL) }
                     rating={ handleNullRating(serie.vote_average) }
                 />
             ) )
@@ -70,7 +43,7 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
                     type={ movie.media_type }
                     date={ handleNullDate(movie.release_date) }
                     bookmark={ movie.bookmark }
-                    image={ handleNullImage(POSTER_MOVIE_URL + movie.poster_path) }
+                    image={ handleNullImage(movie.poster_path, POSTER_MOVIE_URL) }
                     rating={ handleNullRating(movie.vote_average) }
                 />
             ) )
@@ -84,18 +57,18 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
                     key={ uuid() }
                     id={ searchResult.id }
                     title={ handleNullTitle(
-                        searchResult.media_type === tv
+                        searchResult.name
                         ? searchResult.name
                         : searchResult.title
                         ) }
                     type={ searchResult.media_type }
                     date={ handleNullDate(
-                        searchResult.media_type === tv
+                        searchResult.first_air_date
                         ? searchResult.first_air_date
                         : searchResult.release_date
                         ) }
                     bookmark={ searchResult.bookmark }
-                    image={ handleNullImage(POSTER_MOVIE_URL + searchResult.poster_path) }                    
+                    image={ handleNullImage(searchResult.poster_path, POSTER_MOVIE_URL) }                    
                     rating={ handleNullRating(searchResult.vote_average) }
                 />
             ) )
@@ -109,24 +82,25 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
                     key={ uuid() }
                     id={ bookmark.id }
                     title={ handleNullTitle(
-                        bookmark.media_type === tv
+                        bookmark.name
                         ? bookmark.name
                         : bookmark.title
                         ) }
                     type={ bookmark.media_type }
                     date={ handleNullDate(
-                        bookmark.media_type === tv
+                        bookmark.first_air_date
                         ? bookmark.first_air_date
                         : bookmark.release_date
                         ) }
                     bookmark={ bookmark.bookmark }
-                    image={ handleNullImage(POSTER_MOVIE_URL + bookmark.poster_path) }                    
+                    image={ handleNullImage(bookmark.poster_path, POSTER_MOVIE_URL) }                    
                     rating={ handleNullRating(bookmark.vote_average) }
                 />
             ) )
         )
     }
 
+    // Set active tab on Trending Menu
     const onClickSeries = () => {
         setSelectedType('series')
         setActiveSeries('cardslist__link--active')
@@ -144,7 +118,7 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
         { menu &&
         <>
             <div className="cardslist__menu">
-                <div className="cardslist__title">{ category }</div>
+                <h3 className="cardslist__title">{ category }</h3>
                 <div className="cardslist__types">
                     <Link onClick={() => onClickSeries()} className={"cardslist__link " + activeSeries}>Series</Link>
                     <Link onClick={() => onClickMovies()} className={"cardslist__link " + activeMovies}>Movies</Link>

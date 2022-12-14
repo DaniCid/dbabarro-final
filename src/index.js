@@ -13,9 +13,9 @@ root.render(
   <React.StrictMode>
     <MediaProvider>
       <BrowserRouter>
-        <Navbar />
-        <Routing />
-        <Footer />   
+				<Navbar />
+				<Routing />
+				<Footer />   
       </BrowserRouter>
     </MediaProvider>
   </React.StrictMode>

@@ -54,8 +54,9 @@ export default function Searchbar() {
         <div className="searchbar">
 
             <select value={ language } onChange={ handleLanguage } className="language">
-                <option value="es-ES" className="language__option">ES</option>
-                <option value="en-US" className="language__option">US</option>
+                <option value="ES" className="language__option">ES</option>
+                <option value="FR" className="language__option">FR</option>
+                <option value="US" className="language__option">US</option>
             </select>
 
             <input ref={ searchRef } type="text" placeholder="Search..." className="searchbar__input" />
