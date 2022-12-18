@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import CardsList from '../components/CardsList'
@@ -29,6 +29,7 @@ export const SearchResult = () => {
                     console.log(error)
                 })
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query, language, searchPage])
 
     const moreData = () => {

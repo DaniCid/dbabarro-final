@@ -62,8 +62,8 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
             }
 
             { slider &&
-                <div className="card theater">
-                    <div className="card__header theater__header">
+                <div className="card slider">
+                    <div className="card__header slider__header">
                         <Link to={"/info/movie/" + id} className="card__link" onClick={ handleLink }>
                             <img src={ image } loading="lazy" alt={ title } className="card__image" />
                         </Link>

@@ -56,6 +56,7 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
     // Call function everytime slider-arrow is clicked
     useEffect( () => {
         createSlider( nowPlayingMovies, true, sliderStart, sliderEnd)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sliderStart, sliderEnd])
 
 	// Set active tab on Trending Menu

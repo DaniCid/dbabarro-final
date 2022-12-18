@@ -1,17 +1,17 @@
 import React from 'react'
-import { useMedias, PROVIDERS_LOGO_URL } from '../contexts/MediaContexts'
 import { v4 as uuid } from "uuid"
+import { useMedias, PROVIDERS_LOGO_URL } from '../contexts/MediaContexts'
 
-export default function WatchProviders({ streaming, buy, rent}) {
+export default function WatchProviders({ streaming, buy, rent }) {
 
     const { providersInfo, buyInfo, rentInfo } = useMedias()
 
     const createProviders = array => {
         return array
-        ? providersInfo?.map( provider => (
+        ? array?.map( provider => (
             <img src={ PROVIDERS_LOGO_URL + provider.logo_path } alt={ provider.provider_name } key={ uuid() } className='provider__logo'/>
         ) )
-        : 'NA'
+        : <span className='provider__logo--empty'>Not Available</span>
     }
 
     return (

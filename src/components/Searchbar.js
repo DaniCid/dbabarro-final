@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_KEY, API_URL_LANGUAGE, API_URL_PAGE, API_URL_SEARCH, API_URL_QUERY, SEARCH_MIN_CHARS, useMedias } from '../contexts/MediaContexts'
+import { SEARCH_MIN_CHARS, useMedias } from '../contexts/MediaContexts'
 
 export default function Searchbar() {
 
@@ -31,7 +31,7 @@ export default function Searchbar() {
 
     // Set language
     const handleLanguage = event => {
-
+        
         setLanguage(event.target.value)
     }
 

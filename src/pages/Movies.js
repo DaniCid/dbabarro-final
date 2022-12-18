@@ -8,7 +8,7 @@ export default function Movies() {
 
     const [hasMoreMovies, sethasMoreMovies] = useState(true)
     
-    const { movies, language, setMovies, moviesPage, setMoviesPage, initialState } = useMedias()
+    const { movies, language, setMovies, moviesPage, setMoviesPage } = useMedias()
 
     // MOVIES
     useEffect( () => {
@@ -25,6 +25,7 @@ export default function Movies() {
                 .catch(error => {
                     console.log(error)
                 })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language, moviesPage])
 
     console.log(movies)
@@ -52,5 +53,3 @@ export default function Movies() {
         </InfiniteScroll>
     )
 }
-
-// We import DataFromApi so that we don't lose the data when we refresh the page

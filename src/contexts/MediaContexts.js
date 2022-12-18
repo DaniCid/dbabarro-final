@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import useLocalStorage from '../hooks/useLocalStorage'
+// import { isEmpty } from "../utils/utils";
 
 const MediaContext = React.createContext();
 
@@ -78,10 +79,8 @@ export const MediaProvider = ({ children }) => {
     const [infoMedia, setInfoMedia] = useState()
     const [infoSelected, setInfoSelected] = useState('overview')
 
-    // INFO CAST & CREW
-    const [castUrl, setCastUrl] = useState('')
+    // INFO CAST
     const [castInfo, setCastInfo] = useState([])
-    const [crewInfo, setCrewInfo] = useState([])
 
     // INFO WATCH PROVIDERS
     const [providersInfo, setProvidersInfo] = useState([])
@@ -93,9 +92,49 @@ export const MediaProvider = ({ children }) => {
     const [seasonNumber, setSeasonNumber] = useState(1)
 
     const getMedia = ( id, type ) => {
-        return type === 'tv'
-        ? series.find(serie => serie.id === id)
-        : movies.find(movie => movie.id === id)
+        // return type === 'tv'
+        // ? (series.find(serie => serie.id === id))
+        // : (movies.find(movie => movie.id === id))
+
+        // if ( type === 'tv' ) {
+        //     return series.find(serie => serie.id === id) === null
+        //     ? trendSeries.find(serie => serie.id === id)
+        //     : series.find(serie => serie.id === id)
+        // } else {
+        //     return movies.find(movie => movie.id === id) === null
+        //     ? trendMovies.find(movie => movie.id === id)
+        //     : movies.find(movie => movie.id === id)
+        // }
+
+        let result;
+
+result = series.find(obj => obj.id === id);
+if (result) {
+  return result;  // devuelve el objeto si se encuentra en array1
+}
+
+result = movies.find(obj => obj.id === id);
+if (result) {
+  return result;  // devuelve el objeto si se encuentra en array2
+}
+
+result = trendMovies.find(obj => obj.id === id);
+if (result) {
+  return result;  // devuelve el objeto si se encuentra en array3
+}
+
+result = trendSeries.find(obj => obj.id === id);
+if (result) {
+  return result;  // devuelve el objeto si se encuentra en array4
+}
+
+result = searchResults.find(obj => obj.id === id);
+if (result) {
+  return result;  // devuelve el objeto si se encuentra en array4
+}
+
+return null;  // devuelve null si el objeto no se encuentra en ninguno de los arrays
+
     }
 
     const addBookmark = ( id, type ) => {
@@ -105,29 +144,28 @@ export const MediaProvider = ({ children }) => {
                 return prevBookmarks
             }
             return [ ...prevBookmarks, media]
-        })
-        // setBookmarks( [...bookmarks, media])
+        } )
     }
 
-    const addMarker = ( id ) => {
+    const addMarker = id => {
         setMarkers( prevMarker => {
             if ( prevMarker.find(marker => marker === id) ) {
                 return prevMarker
             }
             return [ ...prevMarker, id]
-        })
+        } )
     }
 
-    const deleteBookmark = ( id ) => {
+    const deleteBookmark = id => {
         setBookmarks(prevBookmarks => {
             return prevBookmarks.filter(bookmark => bookmark.id !== id)
-        })
+        } )
     }
 
-    const deleteMarker = ( id ) => {
+    const deleteMarker = id => {
         setMarkers(prevMarkers => {
             return prevMarkers.filter(marker => marker !== id)
-        })
+        } )
     }
 
     return (
@@ -142,9 +180,7 @@ export const MediaProvider = ({ children }) => {
             language,
             infoMedia,
             infoUrl,
-            castUrl,
             castInfo,
-            crewInfo,
             providersInfo,
             seriesPage,
             moviesPage,
@@ -171,7 +207,6 @@ export const MediaProvider = ({ children }) => {
             deleteBookmark,
             getMedia,
             setCastInfo,
-            setCrewInfo,
             setProvidersInfo,
             setSeriesPage,
             setMoviesPage,

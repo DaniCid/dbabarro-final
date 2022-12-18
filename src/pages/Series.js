@@ -23,6 +23,7 @@ export default function Series() {
                 .catch(error => {
                     console.log(error)
                 })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language, seriesPage])
 
     const moreSeries = () => {

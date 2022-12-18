@@ -33,10 +33,11 @@ export default function Info() {
                 .catch(error => {
                     console.log(error)
                 })
-        }     
+        }    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language, info_url])
 
-    // INFO CAST & CREW API
+    // INFO CAST API
     useEffect( () => {
         if (cast_url !== '') {
             axios.get(cast_url + language)
@@ -46,7 +47,8 @@ export default function Info() {
                 .catch(error => {
                     console.log(error)
                 })
-        }     
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps     
     }, [language, cast_url])
 
     // PROVIDERS SERIES & MOVIES API
@@ -67,7 +69,8 @@ export default function Info() {
                 .catch(error => {
                     console.log(error)
                 })
-        }     
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps    
     }, [language, providers_url])
 
     // INFO SEASONS SERIES API
@@ -90,7 +93,8 @@ export default function Info() {
                 .catch(error => {
                     console.log(error)
                 })
-        }     
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps   
     }, [language, seasonNumber])
 
     const resetSeason = (array, tvId) => {

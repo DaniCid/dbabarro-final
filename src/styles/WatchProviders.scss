@@ -4,10 +4,12 @@
     height: 50px;
     border-radius: 5px;
     margin: 0 5px;
+
+    &--empty
+    {
+        font-size: 0.9rem;
+        color: $greyDark;
+    }
 }
 
-.provider__empty
-{
-    font-size: 0.9rem;
-    color: $greyDark;
-}
+
