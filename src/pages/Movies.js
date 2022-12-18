@@ -8,8 +8,7 @@ export default function Movies() {
 
     const [hasMoreMovies, sethasMoreMovies] = useState(true)
     
-
-    const { movies, language, setMovies, moviesPage, setMoviesPage } = useMedias()
+    const { movies, language, setMovies, moviesPage, setMoviesPage, initialState } = useMedias()
 
     // MOVIES
     useEffect( () => {
@@ -18,13 +17,17 @@ export default function Movies() {
                 .then( res => {
                     const myMovies = res.data.results.map(data => ({...data, bookmark: false}))
                     const myNewMovies = [...movies, ...myMovies]
-                    setMovies(myNewMovies)
+                    const uniqueMovies = [...new Set(myNewMovies)]
+                    setMovies(uniqueMovies)
                     console.log(movies)
+                    console.log(moviesPage)
                 })
                 .catch(error => {
                     console.log(error)
                 })
     }, [language, moviesPage])
+
+    console.log(movies)
 
     const moreMovies = () => {
         if (movies.length >= DISPLAY_MAX_PAGE) return sethasMoreMovies(false)

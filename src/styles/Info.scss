@@ -4,7 +4,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    margin-top: 50px;
 }
 
 
@@ -51,6 +50,7 @@
     margin: 10px 0;
     font-family: $title-font;
     color: $whiteTrans;
+    text-align: left;
 }
 
 .overview__date {
@@ -98,4 +98,109 @@
 {
     width: 90%;
     margin: 20px auto;
+}
+
+.seasons__poster
+{
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.seasons__header
+{
+    background: $black;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.seasons__title
+{
+    color: $whiteTrans;
+    font-family: $montserrat;
+    font-weight: 700;
+}
+
+.seasons__link
+{
+    text-decoration: none;
+    color: $greyLight;
+    font-weight: 700;
+
+    &:hover
+    {
+        color: $menuHover;
+    }
+}
+
+.seasons__data
+{
+    margin-left: 30px;
+}
+
+.seasons__date
+{
+    color: $greyLight;
+}
+
+.info-menu
+{
+    margin: 15px auto;
+}
+
+.info-menu__selector
+{
+    background: none;
+    border: none;
+    color: $black;
+    font-family: $main-font;
+    font-size: 1rem;
+    outline: none;
+    font-weight: 700;
+
+    &:hover
+    {
+        cursor: pointer;
+    }
+
+    &__option
+    {
+        border: none;
+        outline: none;
+        padding: 5px;
+    }
+}
+
+.seasons__image
+{
+    width: 100px;
+    height: 150px;
+}
+
+.seasons
+{
+   
+}
+
+.seasons__card
+{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid $greyLight;
+    max-width: 1400px;
+
+}
+
+.seasons__info
+{
+    margin-left: 30px;
+}
+
+.seasons__episodes
+{
+    color: $greyDark;
+    font-size: .9rem;
+    margin-left: 10px;
 }

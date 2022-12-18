@@ -21,8 +21,8 @@ export const SearchResult = () => {
             axios.get(url + search)
                 .then( res => {
                     const mySearch = res.data.results.map(data => ({...data, bookmark: false}))
-                        // const myNewSearch = [...searchResults, ...mySearch]
-                        setSearchResults(mySearch)
+                        const myNewSearch = [...searchResults, ...mySearch]
+                        setSearchResults(myNewSearch)
                     console.log(res.data)
                 })
                 .catch(error => {

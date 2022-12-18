@@ -26,7 +26,7 @@ export const round = (value, precision) => {
     return Math.round(value * multiplier) / multiplier
 }
 
-// Change Language format for API uses
+// Change Language to format ISO 3166-1
 export const formatLanguage = language => {
 
     switch ( language ) {
@@ -39,6 +39,15 @@ export const formatLanguage = language => {
         default:
             return 'US'
     }
+}
+
+// FILTERS
+export const filterName = array => {
+    return array?.name ? array?.name : array?.title
+}
+
+export const filterDate = array => {
+    return array?.first_air_date ? array?.first_air_date : array?.release_date
 }
 
 // DATA CONTROL

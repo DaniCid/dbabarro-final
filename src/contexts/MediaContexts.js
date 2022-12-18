@@ -9,10 +9,12 @@ export const API_URL = 'https://api.themoviedb.org/3'
 
 export const API_URL_TREND_MOVIE = API_URL + '/trending/movie/week' + API_KEY
 export const API_URL_TREND_TV = API_URL + '/trending/tv/week' + API_KEY
+export const API_URL_THEATRES = API_URL + '/movie/now_playing' + API_KEY
 export const API_URL_SEARCH = API_URL + '/search/multi'
 
 export const API_URL_CREDITS = '/credits'
 export const API_URL_PROVIDERS = '/watch/providers'
+export const API_URL_SEASONS = '/season/'
 export const API_URL_LANGUAGE = '&language='
 export const API_URL_PAGE = '&page='
 export const API_URL_QUERY = '&query='
@@ -20,6 +22,9 @@ export const API_URL_QUERY = '&query='
 // PAGINATION
 export const DISPLAY_MAX_PAGE = 240         // Limit control for how much results Pages can show
 export const DISPLAY_MAX_TRENDING = 6       // Limit control for how much results Trending menu can show
+
+// SLIDER
+export const SLIDER_GAIN = 4                // Limit control for how much results Slider can show in every state
 
 // SEARCH
 export const SEARCH_MIN_CHARS = 1           // Limit control for minimum characters needed for a search
@@ -39,15 +44,19 @@ export function useMedias() {
 export const MediaProvider = ({ children }) => {
 
     // BOOKMARKS
-    const [bookmarks, setBookmarks] = useLocalStorage('bookmarks', [])
+    const [bookmarks, setBookmarks] = useLocalStorage('Bookmarks', [])
+    const [markers, setMarkers] = useLocalStorage('Markers', [])
 
     // SERIES & MOVIES
-    const [series, setSeries] = useState([]) 
+    const [series, setSeries] = useState([])
     const [movies, setMovies] = useState([])
 
     // TRENDING SERIES & TRENDING MOVIES
     const [trendSeries, setTrendSeries] = useState([]) 
     const [trendMovies, setTrendMovies] = useState([])
+
+    // MOVIES IN THEATRES
+    const [nowPlayingMovies, setNowPlayingMovies] = useState([])
 
     // SEARCH
     const [searchResults, setSearchResults] = useState([])
@@ -60,9 +69,14 @@ export const MediaProvider = ({ children }) => {
     let [moviesPage, setMoviesPage] = useState(1)
     let [searchPage, setSearchPage] = useState(1)
 
+    // SLIDER
+    let [sliderStart, setSliderStart] = useState(0)
+    let [sliderEnd, setSliderEnd] = useState(SLIDER_GAIN)
+
     // INFO
     const [infoUrl, setInfoUrl] = useState('')
     const [infoMedia, setInfoMedia] = useState()
+    const [infoSelected, setInfoSelected] = useState('overview')
 
     // INFO CAST & CREW
     const [castUrl, setCastUrl] = useState('')
@@ -71,6 +85,12 @@ export const MediaProvider = ({ children }) => {
 
     // INFO WATCH PROVIDERS
     const [providersInfo, setProvidersInfo] = useState([])
+    const [buyInfo, setBuyInfo] = useState([])
+    const [rentInfo, setRentInfo] = useState([])
+
+    // INFO SEASONS
+    const [seasonsInfo, setSeasonsInfo] = useState([])
+    const [seasonNumber, setSeasonNumber] = useState(1)
 
     const getMedia = ( id, type ) => {
         return type === 'tv'
@@ -86,11 +106,27 @@ export const MediaProvider = ({ children }) => {
             }
             return [ ...prevBookmarks, media]
         })
+        // setBookmarks( [...bookmarks, media])
+    }
+
+    const addMarker = ( id ) => {
+        setMarkers( prevMarker => {
+            if ( prevMarker.find(marker => marker === id) ) {
+                return prevMarker
+            }
+            return [ ...prevMarker, id]
+        })
     }
 
     const deleteBookmark = ( id ) => {
         setBookmarks(prevBookmarks => {
             return prevBookmarks.filter(bookmark => bookmark.id !== id)
+        })
+    }
+
+    const deleteMarker = ( id ) => {
+        setMarkers(prevMarkers => {
+            return prevMarkers.filter(marker => marker !== id)
         })
     }
 
@@ -101,6 +137,7 @@ export const MediaProvider = ({ children }) => {
             trendSeries,
             trendMovies,
             bookmarks,
+            markers,
             searchResults,
             language,
             infoMedia,
@@ -112,10 +149,20 @@ export const MediaProvider = ({ children }) => {
             seriesPage,
             moviesPage,
             searchPage,
+            infoSelected,
+            seasonsInfo,
+            seasonNumber,
+            buyInfo,
+            rentInfo,
+            nowPlayingMovies,
+            sliderStart,
+            sliderEnd,
             setSeries,
             setMovies,
             setTrendSeries,
             setTrendMovies,
+            addMarker,
+            deleteMarker,
             setSearchResults,
             setLanguage,
             setInfoMedia,
@@ -128,7 +175,15 @@ export const MediaProvider = ({ children }) => {
             setProvidersInfo,
             setSeriesPage,
             setMoviesPage,
-            setSearchPage
+            setSearchPage,
+            setInfoSelected,
+            setSeasonsInfo,
+            setSeasonNumber,
+            setBuyInfo,
+            setRentInfo,
+            setNowPlayingMovies,
+            setSliderStart,
+            setSliderEnd
         }}>
             {children}
         </MediaContext.Provider>

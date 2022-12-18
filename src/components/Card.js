@@ -2,65 +2,77 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatReleaseDate, round } from '../utils/utils'
 import { useMedias } from '../contexts/MediaContexts'
-import { useState } from 'react'
 
-export default function Card({ bookmark, image, id, title, type, date, rating }) {
+export default function Card({ bookmark, image, id, title, type, date, rating, slider }) {
 
     const empty = 'fa-regular'
     const filled = 'fa-solid'
 
-    const [bookmarkIcon, setBookmarkIcon] = useState(empty)
+    const { addBookmark, deleteBookmark, addMarker, deleteMarker, markers, setInfoSelected } = useMedias()
 
-    const { handleInfoUrl, addBookmark, deleteBookmark } = useMedias()
-
-    const onClickInfo = () => {
-        // handleInfoUrl(id, type)
-    }
-
+    // Handle the marker-bookmark pairing system
     const onClickBookmark = () => {
-        console.log(bookmark)
-        if ( bookmarkIcon === empty ) {
-            addBookmark(id, type)
-            //change bookmark to true -> search in series/movies in Context -> change object.bookmark to trrue
-            setBookmarkIcon(filled)
-        }
-
-        if ( bookmarkIcon === filled ) {
+        console.log(bookmark) 
+        if ( markers?.find( marker => marker === id ) ) {
+            deleteMarker(id)
             deleteBookmark(id)
-            //change bookmark to false -> search in series/movies in Context -> change object.bookmark to false
-            setBookmarkIcon(empty)
-        }  
+        } else {
+            addMarker(id)
+            addBookmark(id, type)
+        }
     }
 
     const handleBookmarkIcon = () => {
-        if ( bookmark === false) {
-            return empty
-        } else {
+        if ( markers?.find( marker => marker === id)) {
             return filled
+        } else {
+            return empty
         }
     }
 
+    // INITIALIZE OVERVIEW
+    const handleLink = () => {
+        setInfoSelected('overview')
+    }
+
     return ( 
-        <div className="card">
-            <div className="card__header">
-                <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ onClickInfo }>
-                    <img src={ image } loading="lazy" alt={ title } className="card__image" />
-                </Link>
-                <div className="card__bookmark">
-                    <i className={ bookmarkIcon + " fa-bookmark" } onClick={ onClickBookmark }></i>
+        <>
+            { !slider &&
+                <div className="card">
+                    <div className="card__header">
+                        <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ handleLink }>
+                            <img src={ image } loading="lazy" alt={ title } className="card__image" />
+                        </Link>
+                        <div className="card__bookmark">
+                            <i className={ handleBookmarkIcon() + " fa-bookmark" } onClick={ onClickBookmark }></i>
+                        </div>
+                    </div>
+                    <h3 className="card__title">
+                        <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ handleLink }>
+                            { title }
+                        </Link>
+                    </h3>
+                    <div className="card__footer">
+                        <div className="card__date">{ formatReleaseDate(date) }</div>
+                        <div className="card__rating">
+                            <i className="fa-solid fa-star"></i>{ round(rating, 1) }
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <h3 className="card__title">
-                <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ onClickInfo }>
-                    { title }
-                </Link>
-            </h3>
-            <div className="card__footer">
-                <div className="card__date">{ formatReleaseDate(date) }</div>
-                <div className="card__rating">
-                    <i className="fa-solid fa-star"></i>{ round(rating, 1) }
+            }
+
+            { slider &&
+                <div className="card theater">
+                    <div className="card__header theater__header">
+                        <Link to={"/info/movie/" + id} className="card__link" onClick={ handleLink }>
+                            <img src={ image } loading="lazy" alt={ title } className="card__image" />
+                        </Link>
+                        <div className="card__bookmark">
+                            <i className={"fa-solid fa-film"}></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            }
+        </>
     )
 }

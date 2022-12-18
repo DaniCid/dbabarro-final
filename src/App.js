@@ -8,6 +8,7 @@ function App() {
 		<>
 			<Header />
 			<main>
+				<CardsList category={'Now in Theaters'} display={4} nowPlaying />
 				<CardsList category={'Trending'} display={DISPLAY_MAX_TRENDING} menu />
 				<DataFromApi />
 			</main>

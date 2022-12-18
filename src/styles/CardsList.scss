@@ -1,5 +1,7 @@
 .cardslist
 {
+    margin: 20px 0;
+
     &__cards
     {
         display: flex;
@@ -28,7 +30,6 @@
         align-items: center;
         display: flex;
         justify-content: space-between;
-        margin: 25px;
     }
 
     &__title
@@ -37,6 +38,25 @@
         font-family: $title-font;
         font-size: 1.2rem;
         text-transform: uppercase;
+        margin: 25px;
     }
 
+}
+
+.slider__arrow
+{
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: $greyLight;
+    transition: ease all .3s;
+    
+    &:hover
+    {
+        background: $greyLight;
+        color: $whiteTrans;
+    }
 }

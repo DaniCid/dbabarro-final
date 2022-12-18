@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_KEY, API_URL_LANGUAGE, API_URL_PAGE, API_URL_SEARCH, API_URL_QUERY, SEARCH_MIN_CHARS, useMedias } from '../contexts/MediaContexts'
-import axios from 'axios'
 
 export default function Searchbar() {
 
@@ -9,9 +8,12 @@ export default function Searchbar() {
 
     const navigate = useNavigate()
 
-    const { language, setLanguage } = useMedias()
+    const { language, setLanguage, setSearchResults, setSearchPage } = useMedias()
 
     const handleSearch = () => {
+
+        setSearchResults([])
+        setSearchPage(1)
 
         if (searchRef.current.value.length > SEARCH_MIN_CHARS) {
             const query = encodeURI(searchRef.current.value)
@@ -19,11 +21,11 @@ export default function Searchbar() {
         }
 
         if (searchRef.current.value.length === 0) {
-            alert('Empty Searchbar')
+            return alert('Empty Searchbar')
         }
 
         if (searchRef.current.value.length <= SEARCH_MIN_CHARS) {
-            alert('Search too short. Please use two or more letters in your search.')
+            return alert('Search too short. Please use two or more letters in your search.')
         }
     }
 

@@ -9,7 +9,7 @@ export default function Cast() {
     const { castInfo } = useMedias()
 
     return (
-        <>
+        <div className='info__cast'>
             <h2 className='cast__title'>Cast</h2>
             <div className="cast">
                 { castInfo &&
@@ -22,6 +22,6 @@ export default function Cast() {
                     ) )
                 }
             </div>
-        </>
+        </div>
     )
 }

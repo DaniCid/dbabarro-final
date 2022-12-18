@@ -3,36 +3,29 @@ import { Link } from 'react-router-dom'
 import { v4 as uuid } from "uuid"
 import Card from './Card'
 import { useMedias } from '../contexts/MediaContexts'
-import { POSTER_MOVIE_URL } from '../contexts/MediaContexts'
-import { handleNullImage, handleNullTitle, handleNullDate, handleNullRating } from '../utils/utils'
+import { POSTER_MOVIE_URL, SLIDER_GAIN } from '../contexts/MediaContexts'
+import { handleNullImage, handleNullTitle, handleNullDate, handleNullRating, filterName, filterDate } from '../utils/utils'
+import { useEffect } from 'react'
 
-export default function CardsList({ category, display, menu, seriesList, moviesList, searchList, bookmarkList }) {
+export default function CardsList({ category, display, menu, seriesList, moviesList, searchList, bookmarkList, nowPlaying }) {
 
 	// CONTROL TRENDING MENU
 	const [selectedType, setSelectedType] = useState('series')
 	const [activeSeries, setActiveSeries] = useState('cardslist__link--active')
 	const [activeMovies, setActiveMovies] = useState('')
 
-	const { series, movies, trendSeries, trendMovies, searchResults, bookmarks } = useMedias()
+	const { series, movies, trendSeries, trendMovies, searchResults, bookmarks, nowPlayingMovies, sliderStart, sliderEnd, setSliderStart, setSliderEnd } = useMedias()
 
 	// CREATE CARDS
-	const createCard = ( medias ) => {
+	const createCard = medias => {
 		return (
 			medias?.slice(0, display).map( media => (
 				<Card 
 					key={ uuid() }
 					id={ media.id }
-					title={ handleNullTitle(
-						media.name
-						? media.name
-						: media.title
-                    ) }
+					title={ handleNullTitle( filterName(media) ) }
 					type={ media.media_type }
-					date={ handleNullDate(
-						media.first_air_date
-						? media.first_air_date
-						: media.release_date
-                    ) }
+					date={ handleNullDate( filterDate(media) ) }
 					bookmark={ media.bookmark }
 					image={ handleNullImage(media.poster_path, POSTER_MOVIE_URL) }                    
 					rating={ handleNullRating(media.vote_average) }
@@ -40,6 +33,30 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
 			) )
 		)
 	}
+
+    // CREATE SLIDER
+    const createSlider = ( medias, slider, start, end) => {
+		return (
+			medias?.slice(start, end).map( media => (
+				<Card 
+					key={ uuid() }
+					id={ media.id }
+					title={ handleNullTitle( filterName(media) ) }
+					type={ media.media_type }
+					date={ handleNullDate( filterDate(media) ) }
+					bookmark={ media.bookmark }
+					image={ handleNullImage(media.poster_path, POSTER_MOVIE_URL) }                    
+					rating={ handleNullRating(media.vote_average) }
+                    slider={slider}
+				/>
+			) )
+		)
+	}
+
+    // Call function everytime slider-arrow is clicked
+    useEffect( () => {
+        createSlider( nowPlayingMovies, true, sliderStart, sliderEnd)
+    }, [sliderStart, sliderEnd])
 
 	// Set active tab on Trending Menu
 	const onClickSeries = () => {
@@ -53,6 +70,30 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
         setActiveMovies('cardslist__link--active')
         setActiveSeries('')
 	}
+
+    // SLIDER LEFT [-]
+    const onClickSliderLeft = array => {
+        if (sliderStart === 0) {
+            setSliderStart(array.length - SLIDER_GAIN)
+            setSliderEnd(array.length)
+            return
+        }
+
+        setSliderStart(sliderStart - SLIDER_GAIN)
+        setSliderEnd(sliderEnd - SLIDER_GAIN)
+    }
+
+    // SLIDER RIGHT [+]
+    const onClickSliderRight = array => {
+        if (sliderEnd === array.length) {
+            setSliderStart(0)
+            setSliderEnd(SLIDER_GAIN)
+            return
+        }
+
+        setSliderStart(sliderStart + SLIDER_GAIN)
+        setSliderEnd(sliderEnd + SLIDER_GAIN)
+    }
 
 	return (
         <div className="cardslist">
@@ -74,27 +115,38 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
             </>
             }
 
+            { nowPlaying &&
+            <>
+                <h3 className="cardslist__title">{ category }</h3>
+                <div className='cardslist__cards'>
+                    <div className='slider__arrow' onClick={ () => onClickSliderLeft(nowPlayingMovies)}><i class="fa-solid fa-caret-left" ></i></div>
+                    { createSlider(nowPlayingMovies, true, sliderStart, sliderEnd) }
+                    <div className='slider__arrow' onClick={ () => onClickSliderRight(nowPlayingMovies)}><i class="fa-solid fa-caret-right" ></i></div>
+                </div>
+            </>
+            }
+
             { seriesList &&
             <div className='cardslist__cards'>
-                    { createCard(series) }
+                { createCard(series) }
             </div>
             }
 
             { moviesList &&
             <div className='cardslist__cards'>
-                    { createCard(movies) }
+                { createCard(movies) }
             </div>
             }
 
             { searchList &&
             <div className='cardslist__cards'>
-                    { createCard(searchResults) }
+                { createCard(searchResults) }
             </div>
             }
 
             { bookmarkList &&
             <div className='cardslist__cards'>
-                    { createCard(bookmarks) }
+                { createCard(bookmarks) }
             </div>
             }
         </div>
