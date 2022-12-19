@@ -6,7 +6,7 @@ import { useMedias, DISPLAY_MAX_PAGE, API_URL_LANGUAGE, API_URL_TREND_MOVIE, API
 
 export default function Movies() {
 
-    const [hasMoreMovies, sethasMoreMovies] = useState(true)
+    const [hasMoreMovies, setHasMoreMovies] = useState(true)
     
     const { movies, language, setMovies, moviesPage, setMoviesPage } = useMedias()
 
@@ -15,23 +15,31 @@ export default function Movies() {
         const url = API_URL_TREND_MOVIE + API_URL_LANGUAGE + language + API_URL_PAGE + moviesPage
             axios.get(url)
                 .then( res => {
-                    const myMovies = res.data.results.map(data => ({...data, bookmark: false}))
-                    const myNewMovies = [...movies, ...myMovies]
-                    const uniqueMovies = [...new Set(myNewMovies)]
-                    setMovies(uniqueMovies)
+                    const newMovies = [...movies, ...res.data.results]
+                    setMovies(newMovies)
                     console.log(movies)
-                    console.log(moviesPage)
                 })
                 .catch(error => {
                     console.log(error)
                 })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language, moviesPage])
+    }, [moviesPage])
 
-    console.log(movies)
+    // When language is changed, reset movies and fetch them in the right language again
+    useEffect( () => {
+        const url = API_URL_TREND_MOVIE + API_URL_LANGUAGE + language + API_URL_PAGE + moviesPage
+            axios.get(url)
+                .then( res => {
+                    setMovies(res.data.results)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [language])
 
     const moreMovies = () => {
-        if (movies.length >= DISPLAY_MAX_PAGE) return sethasMoreMovies(false)
+        if (movies.length >= DISPLAY_MAX_PAGE) return setHasMoreMovies(false)
         setMoviesPage(moviesPage + 1)
     }
 
@@ -40,12 +48,7 @@ export default function Movies() {
             dataLength={movies.length}
             next={() => moreMovies()}
             hasMore={hasMoreMovies}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-                <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                </p>
-            }
+            initialScrollY={0}
         >
             <div className="movies">
                 <CardsList display={DISPLAY_MAX_PAGE} moviesList />     

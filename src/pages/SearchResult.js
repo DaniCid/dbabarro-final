@@ -20,10 +20,8 @@ export const SearchResult = () => {
         if ( search.length > SEARCH_MIN_CHARS ) {
             axios.get(url + search)
                 .then( res => {
-                    const mySearch = res.data.results.map(data => ({...data, bookmark: false}))
-                        const myNewSearch = [...searchResults, ...mySearch]
-                        setSearchResults(myNewSearch)
-                    console.log(res.data)
+                    const newSearch = [...searchResults, ...res.data.results]
+                    setSearchResults(newSearch)
                 })
                 .catch(error => {
                     console.log(error)
@@ -31,6 +29,22 @@ export const SearchResult = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query, language, searchPage])
+
+    // When language is changed, reset searchResults and fetch them in the right language again
+    useEffect( () => {
+        const search = encodeURI(query)
+        const url = API_URL_SEARCH + API_KEY + API_URL_LANGUAGE + language + API_URL_PAGE + searchPage + API_URL_QUERY
+        if ( search.length > SEARCH_MIN_CHARS ) {
+            axios.get(url + search)
+                .then( res => {
+                    setSearchResults(res.data.results)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query, language])
 
     const moreData = () => {
         if (searchResults.length >= DISPLAY_MAX_PAGE) return sethasMoreResults(false)
@@ -42,12 +56,6 @@ export const SearchResult = () => {
             dataLength={searchResults.length}
             next={() => moreData()}
             hasMore={hasMoreResults}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-                <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                </p>
-            }
         >
             <div className="searchResult">
                 <CardsList display={DISPLAY_MAX_PAGE} searchList />

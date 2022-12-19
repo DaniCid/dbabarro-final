@@ -43,49 +43,27 @@
 
 }
 
-.slider__arrow
+.slider__button
 {
-    width: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 2rem;
-    color: $greyLight;
-    transition: ease all .3s;
     
-    &:hover
-    {
-        background: $greyLight;
-        color: $whiteTrans;
-    }
 }
 
 .slider__page
 {
-    width: 30px;
-    height: 5px;
-    background: $greyLight;
-    display: block;
-    margin: 0 5px;
-
-    &--active
-    {
-        background: $menuHover;
-    }
+    
 }
 
 .slider__pagination
 {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
+    
 }
 
 .slider__wrapper
 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
+    
+}
+
+.slider__arrow
+{
+    
 }

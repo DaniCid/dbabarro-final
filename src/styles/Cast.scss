@@ -1,39 +1,41 @@
-.cast
-{
-    display: flex;
-    overflow: auto;
-    // white-space: nowrap;
-}
-
 .wrapper
 {
     width: 90%;
     margin: 20px auto;
 }
 
-.cast__card 
+.cast
 {
-    width: 138px;
-    margin: 5px;
+    display: flex;
+    overflow: auto;
+
+    &__card 
+    {
+        margin: 5px;
+        width: 138px;
+    }
+
+    &__name
+    {
+        color: $black;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    &__title
+    {
+        color: $black;
+        font-family: $title-font;
+        margin: 10px 0;
+    }
+
+    &__character
+    {
+        color: $greyDark;
+        font-size: .9rem;
+        text-align: center;
+    }
 }
 
-.cast__name
-{
-    color: $black;
-    font-size: 1rem;
-    text-align: center;
-}
 
-.cast__title
-{
-    margin: 10px 0;
-    color: $black;
-    font-family: $title-font;
-}
 
-.cast__character
-{
-    color: $greyDark;
-    font-size: .9rem;
-    text-align: center;
-}

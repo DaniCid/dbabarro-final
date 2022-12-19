@@ -11,12 +11,14 @@ export default function Navbar() {
     const resetMovies = () => {
         setMovies([])
         setMoviesPage(1)
+        window.scroll(0, 0)
     }
 
     // RESET
     const resetSeries = () => {
         setSeries([])
         setSeriesPage(1)
+        window.scroll(0, 0)
     }
 
     return (

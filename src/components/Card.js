@@ -12,7 +12,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
 
     // Handle the marker-bookmark pairing system
     const onClickBookmark = () => {
-        console.log(bookmark) 
+
         if ( markers?.find( marker => marker === id ) ) {
             deleteMarker(id)
             deleteBookmark(id)
@@ -23,6 +23,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
     }
 
     const handleBookmarkIcon = () => {
+
         if ( markers?.find( marker => marker === id)) {
             return filled
         } else {
@@ -32,6 +33,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
 
     // INITIALIZE OVERVIEW
     const handleLink = () => {
+
         setInfoSelected('overview')
         setSeasonNumber(1)
     }
@@ -63,8 +65,8 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
             }
 
             { slider &&
-                <div className="card slider">
-                    <div className="card__header slider__header">
+                <div className="card card--slider">
+                    <div className="card__header card__header--slider">
                         <Link to={"/info/movie/" + id} className="card__link" onClick={ handleLink }>
                             <img src={ image } loading="lazy" alt={ title } className="card__image" />
                         </Link>

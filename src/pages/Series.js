@@ -6,7 +6,7 @@ import { useMedias, DISPLAY_MAX_PAGE, API_URL_LANGUAGE, API_URL_TREND_TV, API_UR
 
 export default function Series() {
 
-    const [hasMoreSeries, sethasMoreSeries] = useState(true)
+    const [hasMoreSeries, setHasMoreSeries] = useState(true)
     
     const { series, language, setSeries, seriesPage, setSeriesPage } = useMedias()
 
@@ -15,19 +15,31 @@ export default function Series() {
         const url = API_URL_TREND_TV + API_URL_LANGUAGE + language + API_URL_PAGE + seriesPage
             axios.get(url)
                 .then( res => {
-                    const mySeries = res.data.results.map(data => ({...data, bookmark: false}))
-                    const myNewSeries = [...series, ...mySeries]
-                    setSeries(myNewSeries)
+                    const newSeries = [...series, ...res.data.results]
+                    setSeries(newSeries)
                     console.log(series)
                 })
                 .catch(error => {
                     console.log(error)
                 })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language, seriesPage])
+    }, [seriesPage])
+
+    // When language is changed, reset series and fetch them in the right language again
+    useEffect( () => {
+        const url = API_URL_TREND_TV + API_URL_LANGUAGE + language + API_URL_PAGE + seriesPage
+            axios.get(url)
+                .then( res => {
+                    setSeries(res.data.results)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [language])
 
     const moreSeries = () => {
-        if (series.length >= DISPLAY_MAX_PAGE) return sethasMoreSeries(false)
+        if (series.length >= DISPLAY_MAX_PAGE) return setHasMoreSeries(false)
         setSeriesPage(seriesPage + 1)
     }
 
@@ -36,12 +48,7 @@ export default function Series() {
             dataLength={series.length}
             next={() => moreSeries()}
             hasMore={hasMoreSeries}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-                <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                </p>
-            }
+            initialScrollY={0}
         >
             <div className="series" data-testid="series">
                 <CardsList display={DISPLAY_MAX_PAGE} seriesList />

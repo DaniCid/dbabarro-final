@@ -44,7 +44,17 @@ export default function Searchbar() {
                 <option value="en-US" className="language__option">US</option>
             </select>
 
-            <input ref={ searchRef } type="text" placeholder="Search..." className="searchbar__input" />
+            <input 
+                ref={ searchRef } 
+                type="text" 
+                placeholder="Search..." 
+                className="searchbar__input" 
+                onKeyDown={event => {
+                    if (event.key === 'Enter') {
+                        handleSearch()
+                    }
+                }}
+            />
 
             <button onClick={ handleSearch } className="searchbar__button">
                 <div className="material-symbols-outlined searchbar__icon">

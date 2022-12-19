@@ -2,6 +2,11 @@
 {
     width: 233px;
 
+    &--slider
+    {
+        width: 333px;
+    }
+
     &__bookmark 
     {
         color: $whiteTrans;
@@ -26,6 +31,11 @@
     {
         height: 350px;
         position: relative;
+
+        &--slider
+        {
+            height: 500px;
+        }
     }
 
     &__image
@@ -60,21 +70,11 @@
         font-size: 1.1rem;
         font-weight: 600;
         padding: 5px 0;
-    }
-}
 
-.slider
-{
-    width: 333px;
-
-    &__header
-    {
-        height: 500px;
-    }
-
-    &__title
-    {
-        font-size: .9rem;
-        text-align: center;
+        &--slider
+        {
+            font-size: .9rem;
+            text-align: center;
+        }
     }
 }
