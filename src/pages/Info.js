@@ -23,6 +23,8 @@ export default function Info() {
     const cast_url = URL + API_URL_CREDITS + API_KEY + API_URL_LANGUAGE
     const providers_url = URL + API_URL_PROVIDERS + API_KEY + API_URL_LANGUAGE
     const gallery_url = URL + API_URL_GALLERY + API_KEY
+
+    let seasons_url = URL + API_URL_SEASONS + seasonNumber + API_KEY + API_URL_LANGUAGE
     
     // INFO SERIES & MOVIES API
     useEffect( () => {
@@ -93,8 +95,11 @@ export default function Info() {
 
     // INFO SEASONS SERIES API
     useEffect( () => {
-    let seasons_url = URL + API_URL_SEASONS + seasonNumber + API_KEY + API_URL_LANGUAGE
-        if (seasons_url !== '' && seasonNumber < infoMedia?.number_of_seasons + 1 ) {
+        console.log("entro aqui")
+        // if (seasons_url !== '' && seasonNumber < infoMedia?.number_of_seasons + 1 ) {
+            console.log(infoMedia?.number_of_seasons)
+            if ( seasonNumber > infoMedia?.number_of_seasons ) { setSeasonNumber(1)}
+            console.log("y aqui tambien")
             axios.get(seasons_url + language)
                 .then( res => {
                     res.data.season_id = id
@@ -111,7 +116,7 @@ export default function Info() {
                 .catch(error => {
                     console.log(error)
                 })
-        }
+        // }
     // eslint-disable-next-line react-hooks/exhaustive-deps   
     }, [language, seasonNumber])
 
@@ -144,7 +149,7 @@ export default function Info() {
 
 
     const resetSeason = (array, tvId) => {
-        // setSeasonNumber(1)
+        // setSeasonNumber(initialState)
         const newArray = array?.filter( season => season.season_id === tvId)
         const finalArray = newArray?.filter( season => season.id)
         return finalArray

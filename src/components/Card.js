@@ -8,7 +8,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
     const empty = 'fa-regular'
     const filled = 'fa-solid'
 
-    const { addBookmark, deleteBookmark, addMarker, deleteMarker, markers, setInfoSelected } = useMedias()
+    const { addBookmark, deleteBookmark, addMarker, deleteMarker, markers, setInfoSelected, setSeasonNumber } = useMedias()
 
     // Handle the marker-bookmark pairing system
     const onClickBookmark = () => {
@@ -18,7 +18,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
             deleteBookmark(id)
         } else {
             addMarker(id)
-            addBookmark(id, type)
+            addBookmark(id)
         }
     }
 
@@ -33,6 +33,7 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
     // INITIALIZE OVERVIEW
     const handleLink = () => {
         setInfoSelected('overview')
+        setSeasonNumber(1)
     }
 
     return ( 
