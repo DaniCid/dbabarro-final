@@ -16,6 +16,7 @@ export const API_URL_SEARCH = API_URL + '/search/multi'
 export const API_URL_CREDITS = '/credits'
 export const API_URL_PROVIDERS = '/watch/providers'
 export const API_URL_SEASONS = '/season/'
+export const API_URL_GALLERY = '/images'
 export const API_URL_LANGUAGE = '&language='
 export const API_URL_PAGE = '&page='
 export const API_URL_QUERY = '&query='
@@ -90,6 +91,9 @@ export const MediaProvider = ({ children }) => {
     // INFO SEASONS
     const [seasonsInfo, setSeasonsInfo] = useState([])
     const [seasonNumber, setSeasonNumber] = useState(1)
+
+    // INFO GALLERY
+    const [gallery, setGallery] = useState()
 
     const getMedia = ( id, type ) => {
         // return type === 'tv'
@@ -193,6 +197,7 @@ return null;  // devuelve null si el objeto no se encuentra en ninguno de los ar
             nowPlayingMovies,
             sliderStart,
             sliderEnd,
+            gallery,
             setSeries,
             setMovies,
             setTrendSeries,
@@ -218,7 +223,8 @@ return null;  // devuelve null si el objeto no se encuentra en ninguno de los ar
             setRentInfo,
             setNowPlayingMovies,
             setSliderStart,
-            setSliderEnd
+            setSliderEnd,
+            setGallery
         }}>
             {children}
         </MediaContext.Provider>

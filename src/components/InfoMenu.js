@@ -17,6 +17,7 @@ export default function InfoMenu({ type }) {
                     <option value="seasons" className="language__option">Seasons</option>
                 }
                 <option value="watch" className="language__option">Watch Now</option>
+                <option value="gallery" className="language__option">Gallery</option>
             </select>
         </div>
     )
