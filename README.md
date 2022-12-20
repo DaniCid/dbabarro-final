@@ -27,7 +27,7 @@ Por último, la intención era ofrecer todo lo citado previamente en cualquier i
 Wireframes:
 As a wireframe for this project I decided to make an early demo on simple html/css, to make sure that i liked the design and everything was lining up.
 
-- Header: ![Wireframe-Header](https://user-images.githubusercontent.com/109437140/208703204-a763cc06-075f-476d-a792-b16b79c76617.jpg)
+- Header: ![Wireframe-Header](https://user-images.githubusercontent.com/109437140/208704629-9eab91ce-e711-422e-bc46-5bdec22aa904.jpg)
 - Home: ![Wireframe-General](https://user-images.githubusercontent.com/109437140/208703184-78fc5fdd-2c2a-4656-aa0f-28e7097488f7.jpg)
 - Info: ![Wireframe-Info](https://user-images.githubusercontent.com/109437140/208703218-4aa4b3ce-1529-4c42-923e-5f3604360103.jpg)
 
@@ -39,3 +39,4 @@ Others issues had to do with design. All of the posters that the API return are 
 The bookmark system has been a bit of a headache at first, as they had to be saved on local storage to keep eevrything bookmarked by the user even if the page refreshed. But it has been easily fixed keeping a reference on localStorage to know when somethign was or not in my bookmarks and refresh the icon.
 
 Seasons had a weird way of being returned by the API, it was pretty hard to try and build and reset the array who contained my seasons info objects. I came up with an idea to show every season with a menu, one by one, and avoid the issues with React async functions who made it pretty hard to display it in the first place.
+
