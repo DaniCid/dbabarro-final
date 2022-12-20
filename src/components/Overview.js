@@ -44,7 +44,7 @@ export default function Overview() {
                                 <div className="overview__overview">{ infoMedia?.overview }</div>
                             </div>
                             <div className="overview__footer">
-                                <div className="watchProviders">
+                                <div className="overview__providers">
                                     <h2 className="overview__category">Watch Now</h2>
                                     <WatchProviders streaming/>
                                 </div>                               

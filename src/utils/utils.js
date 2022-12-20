@@ -17,6 +17,12 @@ export const formatReleaseDate = ( date, yearDate ) => {
     return month + ' ' + year
 }
 
+export const getCreditYear = () => {
+
+    const y = new Date()
+    document.getElementById('year').innerHTML = y.getFullYear()
+}
+
 // Round a number to the desired precision
 export const round = (value, precision) => {
 

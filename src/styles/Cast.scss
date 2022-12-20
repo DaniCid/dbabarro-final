@@ -1,13 +1,19 @@
 .wrapper
 {
-    width: 90%;
     margin: 20px auto;
+    width: 90%;
 }
 
 .cast
 {
-    display: flex;
-    overflow: auto;
+    margin: 20px auto;
+    width: 90%;
+
+    &__body
+    {
+        display: flex;
+        overflow: auto;
+    }
 
     &__card 
     {

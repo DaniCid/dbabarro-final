@@ -4,6 +4,11 @@
     position: relative;
     width: 100%;
     
+    &__icon 
+    {
+        font-size: 20rem;
+    }
+
     &__title
     {
         background-attachment: fixed;
@@ -17,11 +22,6 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-
-    &__icon 
-    {
-        font-size: 20rem;
-    }    
 }
 
 

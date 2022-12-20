@@ -1,18 +1,20 @@
-.flex-container {
+.flex-container 
+{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: 50px 100px;
     gap: 25px;
-  }
+}
 
-  .flex-item {
+.flex-item 
+{
     width: 200px;
     height: 450px;
-  }
+}
 
-  .gallery__image
-  {
+.gallery__image
+{
     width: 300px;
     object-fit: cover;
-  }
+}

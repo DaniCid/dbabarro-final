@@ -9,9 +9,9 @@ export default function Cast() {
     const { castInfo } = useMedias()
 
     return (
-        <div className='info__cast'>
+        <div className='cast'>
             <h2 className='cast__title'>Cast</h2>
-            <div className="cast">
+            <div className="cast__body">
                 { castInfo &&
                     castInfo?.map( actor => (
                         <div className="cast__card" key={ uuid() }>

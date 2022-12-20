@@ -1,175 +1,72 @@
-.overview
-{
-    background-position: left calc((50vw - 170px) - 340px) top;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-}
+.info {
 
-
-  .overview__filter {
-    background-image: linear-gradient(to right, rgba(51, 51, 51, 1) calc((50vw - 170px) - 340px), rgba(51, 51, 51, 0.84) 30%, rgba(163, 163, 163, 0.84) 100%);
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.overview__wrapper {
-    max-width: 1400px;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.overview__title 
-{
-    color: $whiteTrans;
-    font-size: 2.2rem;
-    font-family: 'Source Sans Pro',sans-serif;
-    font-weight: 700;
-    margin: 5px 0;
-}
-
-.overview__data{
-    color: $whiteTrans;
-    font-size: 1rem;
-    font-family: 'Source Sans Pro',sans-serif;
-}
-
-.overview  {
-    color: $whiteTrans;
-}
-
-.overview__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left: 30px;
-}
-
-.overview__category {
-    margin: 10px 0;
-    font-family: $title-font;
-    color: $whiteTrans;
-    text-align: left;
-}
-
-.overview__date {
-    padding: 3px 5px;
-    border: 1px solid $greyLight;
-    color: $greyLight;
-    border-radius: 3px;
-    margin-right: 3px;
-    font-size: .8rem;
-}
-
-.overview__genres {
-    margin: 0 3px;
-}
-
-.overview__time {
-    margin-left: 3px;
-}
-
-.overview__poster
-{
-    object-fit: cover;
-    border-radius: 8px;
-    height: 450px;
-    width: 300px;
-}
-
-.watchProviders
-{
-    text-align: center;
-}
-
-.overview__footer
-{
-    display: flex;
-    justify-content: space-between;
-}
-
-.credits
-{
-    text-align: center;
-}
-
-.info__cast
-{
-    width: 90%;
-    margin: 20px auto;
-}
-
-.seasons__poster
-{
-    width: 60px;
-    height: 90px;
-    object-fit: cover;
-}
-
-.seasons__header
-{
-    background: $black;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.seasons__title
-{
-    color: $whiteTrans;
-    font-family: $montserrat;
-    font-weight: 700;
-}
-
-.seasons__link
-{
-    text-decoration: none;
-    color: $greyLight;
-    font-weight: 700;
-
-    &:hover
+    &__data 
     {
-        color: $menuHover;
+        margin-left: 30px;
     }
-}
 
-.seasons__data
-{
-    margin-left: 30px;
-}
-
-.seasons__date
-{
-    color: $greyLight;
-}
-
-.info-menu
-{
-    margin: 15px auto;
-}
-
-.info-menu__selector
-{
-    background: none;
-    border: none;
-    color: $black;
-    font-family: $main-font;
-    font-size: 1rem;
-    outline: none;
-    font-weight: 700;
-
-    &:hover
+    &__date 
     {
-        cursor: pointer;
+        color: $greyLight;
+    }
+
+    &__header 
+    {
+        background: $black;
+        padding: 20px;
+    }
+
+    &__link 
+    {
+        color: $greyLight;
+        font-weight: 700;
+        text-decoration: none;
+
+        &:hover
+        {
+            color: $menuHover;
+        }
+    }
+
+    &__menu
+    {
+        margin: 15px auto;
     }
 
     &__option
     {
         border: none;
-        outline: none;
         padding: 5px;
+        outline: none;
+    }
+
+    &__poster 
+    {
+        height: 90px;
+        object-fit: cover;
+        width: 60px;
+    }
+
+    &__selector
+    {
+        background: none;
+        border: none;
+        color: $black;
+        font-family: $main-font;
+        font-size: 1rem;
+        font-weight: 700;
+        outline: none;
+
+        &:hover
+        {
+            cursor: pointer;
+        }  
+    }
+
+    &__title 
+    {
+        color: $whiteTrans;
+        font-family: $montserrat;
+        font-weight: 700;
     }
 }
-
