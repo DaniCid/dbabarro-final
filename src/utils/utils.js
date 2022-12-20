@@ -17,6 +17,7 @@ export const formatReleaseDate = ( date, yearDate ) => {
     return month + ' ' + year
 }
 
+// Return actual year for copyright footer
 export const getCreditYear = () => {
 
     const y = new Date()
