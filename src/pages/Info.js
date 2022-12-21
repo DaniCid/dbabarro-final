@@ -66,7 +66,6 @@ export default function Info() {
         setEmptyInfo(false)
         axios.get(providers_url + language)
             .then( res => {
-                console.log(res.data.results)
                 if (isEmpty(res.data.results)) {
                     setProvidersInfo([])
                     setBuyInfo([])
