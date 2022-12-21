@@ -3,6 +3,7 @@ import { getCreditYear } from '../utils/utils'
 
 export default function Footer() {
 
+    // FOOTER COPYRIGHT YEAR
     useEffect( () => {
         getCreditYear()
     } )

@@ -8,6 +8,7 @@ export default function Seasons() {
 
     const { infoMedia, seasonsInfo } = useMedias()
 
+    // FILL SEASONS MENU
     useEffect(() => {
         setSeasonsMenu()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,7 +28,7 @@ export default function Seasons() {
             <div className='seasons__card'>
                 <img 
                     src={ POSTER_INFO_URL + seasonsInfo?.poster_path } 
-                    loading="lazy" 
+                    loading='lazy' 
                     alt={ infoMedia?.name }
                     className='seasons__image'
                 />

@@ -50,6 +50,11 @@
 
     &__menu 
     {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
         list-style-type: none;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 }

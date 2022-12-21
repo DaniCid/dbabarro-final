@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const MediaContext = React.createContext();
@@ -16,9 +16,11 @@ export const API_URL_CREDITS = '/credits'
 export const API_URL_PROVIDERS = '/watch/providers'
 export const API_URL_SEASONS = '/season/'
 export const API_URL_GALLERY = '/images'
+
 export const API_URL_LANGUAGE = '&language='
 export const API_URL_PAGE = '&page='
 export const API_URL_QUERY = '&query='
+export const API_URL_REGION = '&region='
 
 // PAGINATION
 export const DISPLAY_MAX_PAGE = 240         // Limit control for how much results Pages can show
@@ -86,6 +88,7 @@ export const MediaProvider = ({ children }) => {
     const [providersInfo, setProvidersInfo] = useState([])
     const [buyInfo, setBuyInfo] = useState([])
     const [rentInfo, setRentInfo] = useState([])
+    const [emptyInfo, setEmptyInfo] = useState(false)
 
     // INFO SEASONS
     const [seasonsInfo, setSeasonsInfo] = useState([])
@@ -165,6 +168,7 @@ export const MediaProvider = ({ children }) => {
             sliderStart,
             sliderEnd,
             gallery,
+            emptyInfo,
             setSeries,
             setMovies,
             setTrendSeries,
@@ -191,7 +195,8 @@ export const MediaProvider = ({ children }) => {
             setNowPlayingMovies,
             setSliderStart,
             setSliderEnd,
-            setGallery
+            setGallery,
+            setEmptyInfo
         }}>
             {children}
         </MediaContext.Provider>

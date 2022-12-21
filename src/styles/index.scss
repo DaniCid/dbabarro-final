@@ -5,13 +5,14 @@
 * Comments: Developed for the GA Front End Development Course with Fundation Adecco
 **/
 
-// General
+// GENERAL
 @import './variables.scss';
 @import './General.scss';
 @import './icons.scss';
 @import './tags.scss';
+@import './responsive.scss';
 
-// Components
+// COMPONENTS
 @import './Card.scss';
 @import './Footer.scss';
 @import './CardsList.scss';
@@ -26,11 +27,12 @@
 @import './Slider.scss';
 @import './Overview.scss';
 
-// Pages
+// PAGES
 @import './NotFound.scss';
 @import './Series.scss';
 @import './Movies.scss';
 @import './SearchResult.scss';
 @import './Info.scss';
+@import './Bookmark.scss';
 
 

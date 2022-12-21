@@ -57,7 +57,7 @@ export const SearchResult = () => {
             next={() => moreData()}
             hasMore={hasMoreResults}
         >
-            <div className="searchResult">
+            <div className='search__result'>
                 <CardsList display={DISPLAY_MAX_PAGE} searchList />
                 { searchResults.length === 0 && <div>Nothing</div> }
             </div>

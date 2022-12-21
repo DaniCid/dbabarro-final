@@ -17,13 +17,13 @@ export default function InfoMenu({ type, info, seasons, season }) {
         <>
             { info &&
                 <div className='info__menu'>
-                    <select value={ infoSelected } onChange={ handleInfoSelected } className="info__selector">
-                        <option value="overview" className="info__option">Overview</option>
+                    <select value={ infoSelected } onChange={ handleInfoSelected } className='info__selector'>
+                        <option value='overview' className='info__option'>Overview</option>
                         { type === 'tv' && 
-                            <option value="seasons" className="info__option">Seasons</option>
+                            <option value='seasons' className='info__option'>Seasons</option>
                         }
-                        <option value="watch" className="info__option">Watch Now</option>
-                        <option value="gallery" className="info__option">Gallery</option>
+                        <option value='watch' className='info__option'>Watch Now</option>
+                        <option value='gallery' className='info__option'>Gallery</option>
                     </select>
                 </div>
 
@@ -31,7 +31,7 @@ export default function InfoMenu({ type, info, seasons, season }) {
 
             { season &&
                 <div className='seasons__menu'>
-                    <select value={ seasonNumber } onChange={ handleSeasonNumber } className="info__selector">
+                    <select value={ seasonNumber } onChange={ handleSeasonNumber } className='info__selector'>
                     { seasons?.map( season => (
                         <option value={ season } key={ season }>{`Season ${season}`}</option>
                     ) )

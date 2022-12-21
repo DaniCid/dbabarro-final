@@ -17,7 +17,6 @@ export default function Series() {
                 .then( res => {
                     const newSeries = [...series, ...res.data.results]
                     setSeries(newSeries)
-                    console.log(series)
                 })
                 .catch(error => {
                     console.log(error)

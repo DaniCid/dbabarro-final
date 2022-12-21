@@ -12,13 +12,13 @@ export default function Routing() {
 
     return (
         <Routes>
-            <Route path="/" element={ <App /> } />
-            <Route path="/series" element={ <Series />} />
-            <Route path="/movies" element={ <Movies />} />
-            <Route path="/bookmark" element={ <Bookmark />} />
-            <Route path="/info/:type/:id" element={ <Info />} />
-            <Route path="/search/:query" element={ <SearchResult />} />
-            <Route path="*" element={ <NotFound />} />
+            <Route path='/' element={ <App /> } />
+            <Route path='/series' element={ <Series />} />
+            <Route path='/movies' element={ <Movies />} />
+            <Route path='/bookmark' element={ <Bookmark />} />
+            <Route path='/info/:type/:id' element={ <Info />} />
+            <Route path='/search/:query' element={ <SearchResult />} />
+            <Route path='*' element={ <NotFound />} />
         </Routes>
     )
 }

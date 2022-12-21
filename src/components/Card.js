@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { formatReleaseDate, round } from '../utils/utils'
 import { useMedias } from '../contexts/MediaContexts'
 
-export default function Card({ bookmark, image, id, title, type, date, rating, slider }) {
+export default function Card({ image, id, title, type, date, rating, slider }) {
 
     const empty = 'fa-regular'
     const filled = 'fa-solid'
@@ -41,37 +41,37 @@ export default function Card({ bookmark, image, id, title, type, date, rating, s
     return ( 
         <>
             { !slider &&
-                <div className="card">
-                    <div className="card__header">
-                        <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ handleLink }>
-                            <img src={ image } loading="lazy" alt={ title } className="card__image" />
+                <div className='card'>
+                    <div className='card__header'>
+                        <Link to={'/info/' + type + '/' + id} className='card__link' onClick={ handleLink }>
+                            <img src={ image } loading='lazy' alt={ title } className='card__image' />
                         </Link>
-                        <div className="card__bookmark">
-                            <i className={ handleBookmarkIcon() + " fa-bookmark" } onClick={ onClickBookmark }></i>
+                        <div className='card__bookmark'>
+                            <i className={ handleBookmarkIcon() + ' fa-bookmark' } onClick={ onClickBookmark }></i>
                         </div>
                     </div>
-                    <h3 className="card__title">
-                        <Link to={"/info/" + type + "/" + id} className="card__link" onClick={ handleLink }>
+                    <h3 className='card__title'>
+                        <Link to={'/info/' + type + '/' + id} className='card__link' onClick={ handleLink }>
                             { title }
                         </Link>
                     </h3>
-                    <div className="card__footer">
-                        <div className="card__date">{ formatReleaseDate(date) }</div>
-                        <div className="card__rating">
-                            <i className="fa-solid fa-star"></i>{ round(rating, 1) }
+                    <div className='card__footer'>
+                        <div className='card__date'>{ formatReleaseDate(date) }</div>
+                        <div className='card__rating'>
+                            <i className='fa-solid fa-star'></i>{ round(rating, 1) }
                         </div>
                     </div>
                 </div>
             }
 
             { slider &&
-                <div className="card card--slider">
-                    <div className="card__header card__header--slider">
-                        <Link to={"/info/movie/" + id} className="card__link" onClick={ handleLink }>
-                            <img src={ image } loading="lazy" alt={ title } className="card__image" />
+                <div className='card card--slider'>
+                    <div className='card__header card__header--slider'>
+                        <Link to={'/info/movie/' + id} className='card__link' onClick={ handleLink }>
+                            <img src={ image } loading='lazy' alt={ title } className='card__image' />
                         </Link>
-                        <div className="card__bookmark">
-                            <i className={"fa-solid fa-film"}></i>
+                        <div className='card__bookmark card__bookmark--slider'>
+                            <i className={'fa-solid fa-film'}></i>
                         </div>
                     </div>
                 </div>

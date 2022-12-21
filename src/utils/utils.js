@@ -7,7 +7,7 @@ export const formatReleaseDate = ( date, yearDate ) => {
     if ( date === 'Date Unavailable' ) return date
 
     const d = new Date(date)
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
     let month = months[d.getMonth()]
     let year = d.getFullYear()

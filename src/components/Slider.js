@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useMedias, SLIDER_GAIN, POSTER_MOVIE_URL } from '../contexts/MediaContexts'
 import { handleNullDate, handleNullTitle, filterDate, filterName, handleNullImage, handleNullRating } from '../utils/utils'
 import Card from './Card'
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from 'uuid'
 
 export default function Slider({ category }) {
 
@@ -66,33 +66,33 @@ export default function Slider({ category }) {
 
     const updateSliderPage = () => {
 
-        const slide1 = document.getElementById("sliderPage1")
-        const slide2 = document.getElementById("sliderPage2")
-        const slide3 = document.getElementById("sliderPage3")
-        const slide4 = document.getElementById("sliderPage4")
-        const slide5 = document.getElementById("sliderPage5")
+        const slide1 = document.getElementById('sliderPage1')
+        const slide2 = document.getElementById('sliderPage2')
+        const slide3 = document.getElementById('sliderPage3')
+        const slide4 = document.getElementById('sliderPage4')
+        const slide5 = document.getElementById('sliderPage5')
 
         const slider = [slide1, slide2, slide3, slide4, slide5]
 
         slider?.map( slide => {
-           return slide?.classList.remove("slider__page--active")
+           return slide?.classList.remove('slider__page--active')
         })
 
         switch(sliderEnd){
             case SLIDER_GAIN:
-               return slide1?.classList.add("slider__page--active")
+               return slide1?.classList.add('slider__page--active')
 
             case SLIDER_GAIN * 2:
-                return slide2?.classList.add("slider__page--active")
+                return slide2?.classList.add('slider__page--active')
 
             case SLIDER_GAIN * 3:
-                return slide3?.classList.add("slider__page--active")
+                return slide3?.classList.add('slider__page--active')
 
             case SLIDER_GAIN * 4:
-                return slide4?.classList.add("slider__page--active")
+                return slide4?.classList.add('slider__page--active')
                 
             case SLIDER_GAIN * 5:
-                return slide5?.classList.add("slider__page--active")
+                return slide5?.classList.add('slider__page--active')
             default:
                 return sliderEnd
         }
@@ -100,19 +100,19 @@ export default function Slider({ category }) {
 
     return (
         <>
-            <h3 className="cardslist__title">{ category }</h3>
+            <h3 className='cardslist__title'>{ category }</h3>
             <div className='slider__wrapper'>
 
                 <div className='slider__button' onClick={ () => onClickSliderLeft(nowPlayingMovies) }>
-                    <span class="material-symbols-outlined slider__arrow">chevron_left</span>
+                    <span className='material-symbols-outlined slider__arrow'>chevron_left</span>
                 </div>
 
-                <div className='cardslist__cards'>       
+                <div className='cardslist__cards cardslist__cards--slider'>       
                     { createSlider(nowPlayingMovies, true, sliderStart, sliderEnd) }
                 </div>
 
                 <div className='slider__button' onClick={ () => onClickSliderRight(nowPlayingMovies) }>
-                    <span class="material-symbols-outlined slider__arrow">chevron_right</span>
+                    <span className='material-symbols-outlined slider__arrow'>chevron_right</span>
                 </div>
 
             </div>

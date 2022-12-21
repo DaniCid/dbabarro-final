@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from 'uuid'
 import Card from './Card'
 import { useMedias } from '../contexts/MediaContexts'
 import { POSTER_MOVIE_URL } from '../contexts/MediaContexts'
@@ -48,14 +48,14 @@ export default function CardsList({ category, display, menu, seriesList, moviesL
 	}
 
 	return (
-        <div className="cardslist">
+        <div className='cardslist'>
             { menu &&
             <>
-                <div className="cardslist__menu">
-                    <h3 className="cardslist__title">{ category }</h3>
-                    <div className="cardslist__types">
-                        <Link onClick={() => onClickSeries()} className={"cardslist__link " + activeSeries}>Series</Link>
-                        <Link onClick={() => onClickMovies()} className={"cardslist__link " + activeMovies}>Movies</Link>
+                <div className='cardslist__menu'>
+                    <h3 className='cardslist__title'>{ category }</h3>
+                    <div className='cardslist__types'>
+                        <Link onClick={() => onClickSeries()} className={'cardslist__link ' + activeSeries}>Series</Link>
+                        <Link onClick={() => onClickMovies()} className={'cardslist__link ' + activeMovies}>Movies</Link>
                     </div>
                 </div>
 

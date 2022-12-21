@@ -17,7 +17,6 @@ export default function Movies() {
                 .then( res => {
                     const newMovies = [...movies, ...res.data.results]
                     setMovies(newMovies)
-                    console.log(movies)
                 })
                 .catch(error => {
                     console.log(error)

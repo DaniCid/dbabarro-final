@@ -8,11 +8,11 @@ export default function Bookmark() {
 
     return (
         <>
-            <div className="movies">
+            <div className='movies'>
                 <CardsList display={DISPLAY_MAX_PAGE} bookmarkList />
             </div>
             { bookmarks.length === 0 &&
-                <span>Bookmark something first!</span>
+                <span className='bookmark__empty'>Your list is empty!</span>
             }
         </>
     )
