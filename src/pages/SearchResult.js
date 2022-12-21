@@ -59,7 +59,7 @@ export const SearchResult = () => {
         >
             <div className='search__result'>
                 <CardsList display={DISPLAY_MAX_PAGE} searchList />
-                { searchResults.length === 0 && <div>Nothing</div> }
+                { searchResults.length === 0 && <div className='bookmark__empty'>No Results...</div> }
             </div>
         </InfiniteScroll>
     )

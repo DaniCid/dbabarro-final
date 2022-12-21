@@ -8,7 +8,7 @@ export default function Bookmark() {
 
     return (
         <>
-            <div className='movies'>
+            <div className='movies' data-testid="bookmark">
                 <CardsList display={DISPLAY_MAX_PAGE} bookmarkList />
             </div>
             { bookmarks.length === 0 &&

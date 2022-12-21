@@ -1,42 +1,53 @@
-.fa-twitter:hover
+.fa
 {
-    color: #81CFEC;
-}
-
-.fa-facebook-f:hover
-{
-    color: #4A93D0;
-}
-
-.fa-tiktok:hover
-{
-    color: #65c3c9;
-}
-
-.fa-apple
-{
-    font-size: 1rem;
-}
-
-.fa-star
-{
-    margin: 0 4px;
-    color: $menuHover;
-}
-
-.fa-bookmark
-{
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: ease-in-out all .2s;
-
-    &:hover
+    .fa-bookmark
     {
-        transform: scale(1.2);
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: ease-in-out all .2s;
+    
+        &:hover
+        {
+            transform: scale(1.2);
+        }
+    }
+
+    &-facebook-f
+    {
+        &:hover
+        {
+            color: #4A93D0;
+        }
+    }
+
+    &-film
+    {
+        font-size: 1.5rem;
+    }
+    
+    &-star
+    {
+        color: $menuHover;
+        margin: 0 4px;
+    }
+    &-tiktok
+    {
+        &:hover
+        {
+            color: #65c3c9;
+        }
+    }
+    &-twitter
+    {
+        &:hover
+        {
+            color: #81CFEC;
+        }
     }
 }
 
-.fa-film
-{
-    font-size: 1.5rem;
-}
+
+
+
+
+

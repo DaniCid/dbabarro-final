@@ -41,7 +41,7 @@ export default function Card({ image, id, title, type, date, rating, slider }) {
     return ( 
         <>
             { !slider &&
-                <div className='card'>
+                <div className='card' data-testid="card">
                     <div className='card__header'>
                         <Link to={'/info/' + type + '/' + id} className='card__link' onClick={ handleLink }>
                             <img src={ image } loading='lazy' alt={ title } className='card__image' />
@@ -65,7 +65,7 @@ export default function Card({ image, id, title, type, date, rating, slider }) {
             }
 
             { slider &&
-                <div className='card card--slider'>
+                <div className='card card--slider' data-testid="card--slider">
                     <div className='card__header card__header--slider'>
                         <Link to={'/info/movie/' + id} className='card__link' onClick={ handleLink }>
                             <img src={ image } loading='lazy' alt={ title } className='card__image' />

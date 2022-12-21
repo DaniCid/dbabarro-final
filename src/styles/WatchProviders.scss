@@ -1,14 +1,14 @@
 .provider__logo
 {
-    width: 50px;
-    height: 50px;
     border-radius: 5px;
+    height: 50px;
     margin: 0 5px;
+    width: 50px;
 
     &--empty
     {
-        font-size: 0.9rem;
         color: $greyDark;
+        font-size: 0.9rem;
     }
 }
 

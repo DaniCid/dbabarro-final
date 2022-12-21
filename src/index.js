@@ -10,15 +10,15 @@ import './styles/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <MediaProvider>
-      <BrowserRouter>
-				<Navbar />
-				<Routing />
-				<Footer />   
-      </BrowserRouter>
-    </MediaProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <MediaProvider>
+            <BrowserRouter>
+                <Navbar />
+                <Routing />
+                <Footer />   
+            </BrowserRouter>
+        </MediaProvider>
+    </React.StrictMode>
 );
 
 reportWebVitals();

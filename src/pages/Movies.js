@@ -49,7 +49,7 @@ export default function Movies() {
             hasMore={hasMoreMovies}
             initialScrollY={0}
         >
-            <div className="movies">
+            <div className="movies" data-testid="movies">
                 <CardsList display={DISPLAY_MAX_PAGE} moviesList />     
             </div>
         </InfiniteScroll>
