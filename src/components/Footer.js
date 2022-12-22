@@ -9,7 +9,7 @@ export default function Footer() {
     } )
 
     return (
-        <footer className='footer'>
+        <footer className='footer' data-testid='footer'>
             <div className='sns'>
                 <a href='https://twitter.com/' className='sns__link'><i className='sns__icon fa-brands fa-twitter'></i></a>
                 <a href='https://es-es.facebook.com/' className='sns__link'><i className='sns__icon fa-brands fa-facebook-f'></i></a>

@@ -23,7 +23,7 @@ export default function Navbar() {
 
     return (
     <>
-        <nav className='navbar'>
+        <nav className='navbar' data-testid='navbar'>
             <ul className='navbar__menu'>
                 <li className='navbar__item'>
                     <NavLink to='/' className='navbar__link'><span className='material-symbols-outlined navbar__icon'>slideshow</span></NavLink>

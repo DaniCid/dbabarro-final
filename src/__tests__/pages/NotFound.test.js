@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import NotFound from "../../pages/NotFound";
+import NotFound from '../../pages/NotFound';
 
 test('NotFound Page render.', () => {
     render(<NotFound />, { wrapper: BrowserRouter })

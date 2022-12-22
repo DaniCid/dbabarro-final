@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import { MediaProvider } from '../../contexts/MediaContexts';
 import Movies from '../../pages/Movies';
 

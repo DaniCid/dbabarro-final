@@ -6,27 +6,31 @@
 
 Developed for the GA Front End Development Course with Fundation Adecco.
 
+## HOW TO USE
+
+Use `npm start` to start the server on localhost por 3000.
+
+If there is any errors, try `npm install` to refresh any dependencies before opening the project again.
+
 ## LIBRARIES & TECHNOLOGIES
 
-The following technologies were used in this project:
+In this project we can find the following technologies: 
 - **React**
 
-React did allowed me to build a fast and dynamic webpage. The fact that only components get rendered whitouth the need to refresh the entire page is particulary important in a project like this one, were lot of info is being fetched from an API.
-
-Not only it was important for optimizing data usage, but it was also a big time saver to be able to reutilize a component in many places with a single line.
+React allowed me to build a fast and dynamic webpage. The fact that only components get rendered without the need to refresh the entire page is vital in a project like this one, where lots of information is obtained from an API. That is important not only for optimizing data usage, but it was also a big time saver to reutilize a component in many places with a single line.
 - **Sass**
 
-We used Sass to expand a lot from what CSS can't do for now. For example, being able to use '&' as a placeholder for his nested parent is a lifesaver when it comes to change a class name in the middle of a project. Also, I am particularly fond of using variables for stuff like fonts-names or colors.
+We used Sass to expand from what CSS can't do for now. For example, being able to use '&' as a placeholder for his nested parent is a lifesaver when it comes to changing a class name in the middle of a project. Also, I am particularly fond of using variables for things like fonts-names or colours.
 
-It's important to note that I used BEM as my naming metodology for my classes, making Sass a perfect addition as how good they combine together.
+It's important to note that I used BEM as my namimg methodology for my classes, making Sass a perfect addition to how well they combine.
 - **HTML**
 
-Usual HTML mixed with how React handle JSX. Basic structure, I tried to use some specific elements like 'main, section, ...' and so on, trying to think a little bit about SEO and the optimization of the webpage.
+Standard HTML mixed with the way React uses JSX. For basic structure, I tried to use some specific elements like 'main, section, ...' and so on, trying to think a little bit about SEO and the optimization of the webpage.
 - **Javascript** 
 
-Sums up to more than 70% of the project. Used it to build the basic logic structure about my web app, aswell as to control data and conditionals to show or not some elements/components.
+More than 70% of the project. It has been used to build the basic logic structure of my web app, as well as to control data and conditionals to show or not some elements/components.
 
-Array and Object management were a big part of the project. Being able to use useful methos like .map, .find or .filter proved to be indispensable for my work.
+Array and Object management was a big part of the project. Being able to use helpful methods like .map, .find or .filter proved to be indispensable for my work.
 
 Aswell as some libraries:
 - **react-router-dom**
@@ -55,7 +59,7 @@ Lastly, the intention was to offer the previously mentioned in every language an
 
 ## WIREFRAMES
 
-As a wireframe for this project I decided to make an early demo on simple html/css, to make sure that i liked the design and everything was lining up.
+As a wireframe for this project, I decided to make an early demo on simple HTML/CSS to ensure that I liked the design and that everything was lining up.
 
 - **Header**: ![Wireframe-Header](https://user-images.githubusercontent.com/109437140/208704629-9eab91ce-e711-422e-bc46-5bdec22aa904.jpg)
 - **Home**: ![Wireframe-General](https://user-images.githubusercontent.com/109437140/208703184-78fc5fdd-2c2a-4656-aa0f-28e7097488f7.jpg)
@@ -65,11 +69,11 @@ They can also be found in the wireframes folder in this project.
 
 ## ISSUES
 
-The principal issue was the first choice of the API, not only the information was scattered around a lot of endpoints but the monthly limit for the free membership was way too low. I then gave a try to TMDB, one of the two major movie databases on internet. It worked perfectly with no limit at all.
+The principal issue was the first choice of the API: information was not only scattered around different endpoints but  the monthly limit for the free membership was way too low. I then tried TMDB, one of the two major movie databases on internet. It worked perfectly with no limit at all.
 
-Others issues had to do with design. All of the posters that the API return are vertical ones. The initial design of the project had horizontal images to view the different shows, I had to change them and came up with a new -and better- design overall. Cleaner, less piled up.
+Others issues had to do with design. All of the posters that the API return are vertical ones but the initial design of the project had horizontal images to show the different shows, so I had to change them and came up with a new -and better- design overall. Cleaner and less piled up.
 
-The bookmark system has been a bit of a headache at first, as they had to be saved on local storage to keep eevrything bookmarked by the user even if the page refreshed. But it has been easily fixed keeping a reference on localStorage to know when somethign was or not in my bookmarks and refresh the icon.
+The bookmark system has been a bit of a headache at first, as they had to be saved on local storage to keep everything bookmarked by the user even if the page refreshed. But it was easily fixed keeping a reference on local storage to know when something was or not in my bookmarks and refresh the icon.
 
-Seasons had a weird way of being returned by the API, it was pretty hard to try and build and reset the array who contained my seasons info objects. I came up with an idea to show every season with a menu, one by one, and avoid the issues with React async functions who made it pretty hard to display it in the first place.
+Seasons had a weird way of being returned by the API so it was pretty hard to try and build and reset the array who contained my seasons info objects. I came up with an idea to show every season with a menu, one by one, and avoid the issues with React async functions that made it pretty hard to display it in the first place.
 
